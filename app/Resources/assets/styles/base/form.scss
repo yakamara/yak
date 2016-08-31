@@ -1,0 +1,91 @@
+@charset "utf-8";
+
+fieldset {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+}
+
+legend {
+    margin-bottom: $spacing-half / 2;
+    padding: 0;
+    font-weight: 600;
+}
+
+label {
+    display: block;
+    margin-bottom: $spacing-half / 2;
+    font-weight: 600;
+}
+
+input,
+select,
+textarea {
+    display: block;
+    color: $form-text-color;
+    font-family: $font-text;
+    font-size: $form-font-size;
+}
+
+#{$all-text-inputs} {
+    appearance: none;
+    width: 100%;
+    margin-bottom: $spacing-half;
+    padding: $spacing / 4;
+    background-color: $form-background-color;
+    border: $form-border;
+    border-radius: $form-border-radius;
+    box-shadow: $form-box-shadow;
+    box-sizing: border-box;
+    transition: border-color $base-duration $base-timing;
+
+    &:hover {
+        border-color: shade($form-border-color, 20%);
+    }
+
+    &:focus {
+        border-color: $form-border-color-focus;
+        box-shadow: $form-box-shadow-focus;
+        outline: none;
+    }
+
+    &:disabled {
+        background-color: shade($form-background-color, 2%);
+        cursor: not-allowed;
+
+        &:hover {
+            border: $form-border;
+        }
+    }
+
+    &::placeholder {
+        color: $form-placeholder-color;
+    }
+}
+
+textarea {
+    resize: vertical;
+}
+
+[type="checkbox"],
+[type="radio"] {
+    display: inline;
+    margin-right: $spacing-half / 2;
+}
+
+[type="file"] {
+    margin-bottom: $spacing-half;
+    width: 100%;
+}
+
+[type="submit"] {
+    padding: $spacing / 4;
+    font-family: $font-text;
+    font-size: $form-font-size;
+}
+
+select {
+    margin-bottom: $spacing-half;
+    width: 100%;
+}

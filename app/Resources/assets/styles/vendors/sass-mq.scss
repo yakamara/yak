@@ -1,0 +1,12 @@
+@charset "utf-8";
+
+/// Breakpoint list
+$mq-breakpoints: $breakpoints;
+
+/// Static breakpoint (for fixed-width layouts)
+$mq-static-breakpoint: $static-breakpoint;
+
+/// Show breakpoints in the top right corner
+$mq-show-breakpoints: $show-breakpoints;
+
+@import '../../../../../node_modules/sass-mq/mq';

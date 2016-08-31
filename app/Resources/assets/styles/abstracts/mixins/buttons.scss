@@ -1,0 +1,14 @@
+@charset "utf-8";
+
+@mixin button-theme($text-color, $text-color-hover, $background-color: transparent, $background-color-hover: transparent, $border-color: transparent, $border-color-hover: transparent) {
+    color: $text-color;
+    background-color: $background-color;
+    border-color: $border-color;
+
+    &:hover {
+        color: $text-color-hover;
+        background-color: $background-color-hover;
+        border-color: $border-color-hover;
+    }
+}
+

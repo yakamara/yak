@@ -1,0 +1,54 @@
+@charset "utf-8";
+
+/*doc
+---
+title: Buttons
+name: buttons
+category: Components
+---
+```html_example
+<a class="button-primary" href="!#">Primary Button</a>
+```
+*/
+[class^="button-"],
+[class*=" button-"],
+.button {
+    display: inline-block;
+    height: 2rem;
+    outline: 0;
+    padding: 0 2rem;
+    border: 1px solid rgba(255, 255, 255, .3);
+    border-radius: 6px;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 2rem;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    @include transition(.2s ease-out);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.button-block {
+    display: block;
+    text-align: center;
+}
+
+.button-default {
+    background-color: $color-a;
+    color: #fff;
+
+    &:hover {
+        background-color: darken($color-a, 10%);
+    }
+}
+
+.button-primary {
+    background-color: $brand-color;
+    color: #fff;
+
+    &:hover {
+        background-color: darken($brand-color, 10%);
+    }
+}

@@ -1,0 +1,55 @@
+{
+    "tasks": {
+        "browserSync": {
+            "startPath": "/",
+            "proxy": "www.madeforscience.dev",
+            "open": false,
+            "reloadOnRestart": true,
+            "notify": false,
+            "reloadDelay": 0,
+            "ghostMode": {
+                "clicks": true,
+                "forms": true,
+                "scroll": false
+            }
+        },
+
+        "fonts": {
+            "src": [
+                "./node_modules/font-awesome/fonts",
+                "./app/Resources/assets/fonts"
+            ],
+            "dest": "./web/assets/fonts",
+            "extensions": ["eot", "otf", "svg", "ttf", "woff", "woff2"],
+            "clean": ["eot", "otf", "svg", "ttf", "woff", "woff2"]
+        },
+
+        "images": {
+            "src": "./app/Resources/assets/images",
+            "dest": "./web/assets/images",
+            "extensions": ["jpg", "png", "gif", "svg"],
+            "clean": ["jpg", "png", "gif", "svg"]
+        },
+
+        "scripts": {
+            "src": "./app/Resources/assets/scripts",
+            "dest": "./web/assets/scripts",
+            "extensions": ["js"],
+            "clean": ["js", "map"]
+        },
+
+        "styles": {
+            "src": "./app/Resources/assets/styles",
+            "dest": "./web/assets/styles",
+            "extensions": ["css", "scss"],
+            "clean": ["css", "map"]
+        },
+
+        "svgs": {
+            "src": "./app/Resources/assets/svgs",
+            "dest": "./web/assets/svgs",
+            "extensions": ["svg"],
+            "clean": ["svg"]
+        }
+    }
+}

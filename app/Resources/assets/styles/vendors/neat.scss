@@ -1,0 +1,7 @@
+@charset "utf-8";
+
+$visual-grid-color: #eee !global;
+$visual-grid-index: back !global;
+$visual-grid-opacity: .5 !global;
+
+@import '../../../../../node_modules/bourbon-neat/app/assets/stylesheets/neat';

@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+.container {
+    @include mq($from: mobile, $until: tablet) {
+        //width: mq-get-breakpoint-width(mobile);
+        width: 100%;
+    }
+    @include mq($from: tablet, $until: desktop) {
+        width: mq-get-breakpoint-width(tablet);
+    }
+    @include mq($from: desktop, $until: wide) {
+        width: mq-get-breakpoint-width(desktop);
+    }
+    @include mq($from: wide) {
+        max-width: ($max-width + $gutter-width);
+    }
+
+    @include outer-container();
+    padding-left: ($gutter-width / 2);
+    padding-right: ($gutter-width / 2);
+
+}
