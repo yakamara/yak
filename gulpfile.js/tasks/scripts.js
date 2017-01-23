@@ -1,53 +1,64 @@
-var config = require('../config');
-if (!config.tasks.scripts) return;
+const gulp = require('gulp');
+const gutil = require('gulp-util');
+const browserify = require('browserify');
+const watchify = require('watchify');
+const babelify = require('babelify');
+const uglify = require('gulp-uglify');
+const source = require('vinyl-source-stream');
+const buffer = require('vinyl-buffer');
+const sourcemaps = require('gulp-sourcemaps');
+const browserSync = require('browser-sync');
+const size = require('gulp-size');
+const notifier = require('node-notifier');
 
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var watchify = require('watchify');
-var browserify = require('browserify');
-var resolutions = require('browserify-resolutions');
-var babelify = require('babelify');
-var uglify = require('gulp-uglify');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var sourcemaps = require('gulp-sourcemaps');
-var assign = require('lodash.assign');
-var browserSync = require('browser-sync');
-var size = require('gulp-size');
+// load config
+const config = require('../config');
 
+// set up browserify
+const b = browserify({
+    entries: config.scripts.sourceFiles,
+    cache: {},
+    packageCache: {},
+    plugin: [watchify] // watchify!
+});
 
-var scriptsTask = function (cb) {
+// add transforms
+b.transform("babelify", {
+    presets: ["es2015"]
+});
 
-    var customOpts = {
-        entries: [config.tasks.scripts.src + '/script.js'],
-        debug: true
-    };
-    var opts = assign({}, watchify.args, customOpts);
-    var b = watchify(browserify(opts))
-        .plugin(resolutions, '*')
-        .transform(babelify.configure({
-            optional: ['es7.classProperties', 'runtime']
-        }));
+// watch for events
+b.on('update', bundle);
+b.on('log', gutil.log);
 
-    b.on('update', bundle);
-    b.on('log', gutil.log);
+// define bundle
+function bundle() {
+    return b.bundle()
+        .on('error', function (err) {
 
-    function bundle() {
-        return b.bundle()
-            .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-            .pipe(source('script.js'))
-            .pipe(buffer())
-            .pipe(gutil.env.production ? gutil.noop() : sourcemaps.init({loadMaps: true}))
-            .pipe(gutil.env.production ? uglify() : gutil.noop())
-            .pipe(gutil.env.production ? gutil.noop() : sourcemaps.write('./'))
-            .pipe(gulp.dest(config.tasks.scripts.dest))
-            .pipe(size({'title': 'Scripts'}))
-            .pipe(size({'title': 'Scripts', 'gzip': true}))
-            .pipe(browserSync.stream());
-    }
-    return bundle();
+            // throw error to console
+            gutil.log(gutil.colors.red.bold(err.name + ': ' + err.message));
+
+            // throw notification
+            notifier.notify({
+                title: 'ROARRRRRRRRRR!',
+                message: 'JavaScript gone wrong.',
+                sound: 'Basso',
+                contentImage: __dirname + '/../assets/fail.png'
+            });
+        })
+        .pipe(source('script.js'))
+        .pipe(buffer())
+        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(gutil.env.production ? uglify() : gutil.noop())
+        .pipe(gutil.noop(gutil.log(gutil.colors.white('JS files generated:'))))
+        .pipe(size({title: 'Scripts:', showFiles: true}))
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest(config.scripts.destinationFolder))
+        .pipe(browserSync.stream());
 }
 
+const task = bundle;
 
-gulp.task('scripts', scriptsTask);
-module.exports = scriptsTask;
+gulp.task('scripts', task);
+module.exports = task;

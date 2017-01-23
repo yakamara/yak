@@ -1,4 +1,4 @@
-import watching from '../watching';
+import watching from '../util/watching';
 import $ from 'jquery';
 
 watching('[data-collection]', {

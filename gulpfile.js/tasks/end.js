@@ -1,16 +1,9 @@
-var config = require('../config');
+const gulp = require('gulp');
 
-
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-
-
-var endTask = function (cb) {
-    gutil.log(gutil.colors.red('Finished build task.'));
+const task = () => {
 
     process.exit();
 };
 
-
-gulp.task('end', endTask);
-module.exports = endTask;
+gulp.task('end', task);
+module.exports = task;

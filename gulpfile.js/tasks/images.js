@@ -1,22 +1,33 @@
-var config = require('../config');
-if (!config.tasks.images) return;
+const gulp = require('gulp');
+const gutil = require('gulp-util');
+const path = require('path');
+const imagemin = require('gulp-imagemin');
+const pngquant = require('imagemin-pngquant');
+const count = require('gulp-count');
+const _ = require('lodash');
 
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var path = require('path');
-var imagemin = require('gulp-imagemin');
-var pngquant = require('imagemin-pngquant');
+// load config
+const config = require('../config');
 
+const task = () => gulp.src(config.images.sourceFiles)
 
-var imagesTask = function () {
-    return gulp.src(path.join(config.tasks.images.src, '/**/*.{' + config.tasks.images.extensions + '}'))
-        // minify on production only, otherwise just copy
-        .pipe(gutil.env.production ? imagemin({
-            use: [pngquant({quality: '65-80', speed: 4})]
+// minify (production)
+    .pipe(gutil.env.production ? imagemin([
+            // plugins (https://www.npmjs.com/browse/keyword/imageminplugin)
+            imagemin.gifsicle(),
+            imagemin.jpegtran(),
+            pngquant(),
+            imagemin.svgo()
+        ], {
+            // options
+            verbose: true
         }) : gutil.noop())
-        .pipe(gulp.dest(config.tasks.images.dest));
-};
 
+    // log
+    .pipe(count(gutil.colors.white('Image files processed: <%= counter %>')))
 
-gulp.task('images', imagesTask);
-module.exports = imagesTask;
+    // save
+    .pipe(gulp.dest(config.images.destinationFolder));
+
+gulp.task('images', task);
+module.exports = task;
