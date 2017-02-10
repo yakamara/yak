@@ -32,7 +32,15 @@ watching('[data-yfilter]', {
         });
 
         this.filters = this.$element.data('toggle');
-        $(this.filters).find('[data-filter]').on('click', event => this.filter(event));
+        let $filters = $(this.filters);
+        $filters.find('[data-filter]').on('click', event => this.filter(event));
+
+        let $active = $filters.find('.active').not('[data-filter="*"]');
+        if ($active.length > 0) {
+            $active.trigger('click');
+        } else {
+            $filters.find('[data-filter="*"]').not('.active').addClass('active');
+        }
 
     },
 
@@ -40,6 +48,9 @@ watching('[data-yfilter]', {
         this.masonry.layout({
             filter: $(event.target).data('filter')
         });
+
+        $(this.filters).find('.active').removeClass('active');
+        $(event.target).addClass('active');
     }
 });
 
