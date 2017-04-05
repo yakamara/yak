@@ -3,6 +3,7 @@ const gutil = require('gulp-util');
 const sass = require('gulp-sass');
 const cssimport = require("gulp-cssimport");
 const sassGlob = require('gulp-sass-glob');
+const sassVariables = require('gulp-sass-variables');
 const sourcemaps = require('gulp-sourcemaps');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
@@ -29,6 +30,10 @@ const task = (cb) => {
 
         // glob partials (use wildcard * for imports)
         .pipe(sassGlob())
+
+        .pipe(sassVariables({
+            $env: gutil.env.production ? 'production' : 'development'
+        }))
 
         // compile sass
         .pipe(sass())

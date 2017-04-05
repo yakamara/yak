@@ -1,5 +1,7 @@
 @charset "utf-8";
 
+$env: 'development' !default;
+
 //== sass-mq Variables
 /// Breakpoint list
 $breakpoints: (
@@ -14,7 +16,10 @@ $breakpoints: (
 $static-breakpoint: desktop;
 
 /// Show breakpoints in the top right corner
-$show-breakpoints: (mobile, tablet, desktop, wide);
+$show-breakpoints: ();
+@if $env == 'development' {
+    $show-breakpoints: (mobile, tablet, desktop, wide);
+}
 
 
 //== Neat Variables
