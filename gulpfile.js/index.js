@@ -13,6 +13,7 @@ tasks.default = gulpSequence(
     'styles',
     'scripts',
     'images',
+    'svgs',
     'copy',
     'watch',
     'browserSync'
@@ -23,6 +24,7 @@ tasks.build = gulpSequence(
     'styles',
     'scripts',
     'images',
+    'svgs',
     'copy',
     'end'
 );

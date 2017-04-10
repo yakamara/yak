@@ -41,7 +41,8 @@ const config = {
         'cleanableTasks': [
             'images',
             'scripts',
-            'styles'
+            'styles',
+            'svgs'
         ]
     },
 
@@ -84,12 +85,22 @@ const config = {
         'cleanFiles': ['./web/assets/styles/*.{css,map}']
     },
 
+    // SVG
+    // combines SVG files to into one with <symbol> elements (»SVG sprite«)
+    'svgs': {
+        'sourceFiles': ['./app/assets/svgs/**/*.svg'],
+        'destinationFolder': './web/assets/svgs',
+        'watchFiles': ['./app/assets/svgs/**/*.svg'],
+        'cleanFiles': ['./web/assets/svgs/*.svg']
+    },
+
     // Watch
     // watches for file changes and fires up related tasks
     'watch': [
         {'images': ['images']},
         {'scripts': ['scripts']},
-        {'styles': ['styles']}
+        {'styles': ['styles']},
+        {'svgs': ['svgs']},
     ]
 };
 
