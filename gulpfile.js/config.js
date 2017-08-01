@@ -33,6 +33,7 @@ const config = {
     // cssnano (minifies CSS)
     // http://cssnano.co/options/
     'cssnano': {
+        'autoprefixer': false,
         'zindex': false,
         'discardUnused': false,
         'mergeIdents': false,
