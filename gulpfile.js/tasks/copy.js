@@ -6,7 +6,7 @@ const copy = require('cpy');
 // copy fontawesom icon fonts (npm package)
 gulp.task('copy:fontawesome', (cb) => {
     let src = ['./node_modules/font-awesome/fonts/*.{woff,woff2}'];
-    let dest = './web/assets/fonts';
+    let dest = './public/assets/fonts';
     copy(src, dest, {}).then((res) => {
         if (res.length > 0) {
             gutil.log(gutil.colors.white('Copied font-awesome icon files: ' + gutil.colors.magenta(res.length)));

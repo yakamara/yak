@@ -43,40 +43,40 @@ const config = {
     // Images
     'images': {
         'sourceFiles': [
-            './app/assets/images/*.{jpg,png,gif,svg,ico}',
+            './assets/images/*.{jpg,png,gif,svg,ico}',
             './node_modules/bootstrap-colorpicker/dist/img/**/*.{jpg,png,gif,svg}'
         ],
-        'destinationFolder': './web/assets/images/',
+        'destinationFolder': './public/assets/images/',
         'watchFiles': [
-            './app/assets/images/*.{jpg,png,gif,svg,ico}',
+            './assets/images/*.{jpg,png,gif,svg,ico}',
             './node_modules/bootstrap-colorpicker/dist/img/**/*.{jpg,png,gif,svg}'
         ],
-        'cleanFiles': ['./web/assets/images/**/*.{jpg,png,gif,svg,ico}']
+        'cleanFiles': ['./public/assets/images/**/*.{jpg,png,gif,svg,ico}']
     },
 
     // Scripts
     'scripts': {
-        'sourceFiles': ['./app/assets/scripts/script.js'],
-        'destinationFolder': './web/assets/scripts',
-        'watchFiles': ['./app/assets/scripts/**/*.js'],
-        'cleanFiles': ['./web/assets/scripts/*.{js,map}']
+        'sourceFiles': ['./assets/scripts/script.js'],
+        'destinationFolder': './public/assets/scripts',
+        'watchFiles': ['./assets/scripts/**/*.js'],
+        'cleanFiles': ['./public/assets/scripts/*.{js,map}']
     },
 
     // Styles
     'styles': {
-        'sourceFiles': ['./app/assets/styles/*.scss'],
-        'destinationFolder': './web/assets/styles',
-        'watchFiles': ['./app/assets/styles/**/*.scss'],
-        'cleanFiles': ['./web/assets/styles/*.{css,map}']
+        'sourceFiles': ['./assets/styles/*.scss'],
+        'destinationFolder': './public/assets/styles',
+        'watchFiles': ['./assets/styles/**/*.scss'],
+        'cleanFiles': ['./public/assets/styles/*.{css,map}']
     },
 
     // SVG
     // combines SVG files to into one with <symbol> elements (»SVG sprite«)
     'svgs': {
-        'sourceFiles': ['./app/assets/svgs/**/*.svg'],
-        'destinationFolder': './web/assets/svgs',
-        'watchFiles': ['./app/assets/svgs/**/*.svg'],
-        'cleanFiles': ['./web/assets/svgs/*.svg']
+        'sourceFiles': ['./assets/svgs/**/*.svg'],
+        'destinationFolder': './public/assets/svgs',
+        'watchFiles': ['./assets/svgs/**/*.svg'],
+        'cleanFiles': ['./public/assets/svgs/*.svg']
     },
 
     // Watch

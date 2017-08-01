@@ -9,4 +9,4 @@ $mq-static-breakpoint: $static-breakpoint;
 /// Show breakpoints in the top right corner
 $mq-show-breakpoints: $show-breakpoints;
 
-@import '../../../../node_modules/sass-mq/mq';
+@import '../../../node_modules/sass-mq/mq';
