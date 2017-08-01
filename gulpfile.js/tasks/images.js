@@ -12,7 +12,7 @@ const config = require('../config');
 const task = () => gulp.src(config.images.sourceFiles)
 
 // minify (production)
-    .pipe(gutil.env.production ? imagemin([
+    .pipe('prod' === process.env.APP_ENV ? imagemin([
             // plugins (https://www.npmjs.com/browse/keyword/imageminplugin)
             imagemin.gifsicle(),
             imagemin.jpegtran(),

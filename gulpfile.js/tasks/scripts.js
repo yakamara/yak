@@ -50,7 +50,7 @@ function bundle() {
         .pipe(source('script.js'))
         .pipe(buffer())
         .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(gutil.env.production ? uglify() : gutil.noop())
+        .pipe('prod' === process.env.APP_ENV ? uglify() : gutil.noop())
         .pipe(gutil.noop(gutil.log(gutil.colors.white('JS files generated:'))))
         .pipe(size({title: 'Scripts:', showFiles: true}))
         .pipe(sourcemaps.write('./'))

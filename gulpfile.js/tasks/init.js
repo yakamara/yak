@@ -3,7 +3,7 @@ const gutil = require('gulp-util');
 
 const task = (cb) => {
 
-    if (gutil.env.production) {
+    if ('prod' === process.env.APP_ENV) {
 
         console.log(gutil.colors.white('\n  Production\n'));
     }

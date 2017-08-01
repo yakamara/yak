@@ -23,7 +23,7 @@ const task = (cb) => {
     return gulp.src(config.styles.sourceFiles)
 
     // init sourcemaps
-        .pipe(!gutil.env.production ? sourcemaps.init() : gutil.noop())
+        .pipe('prod' !== process.env.APP_ENV ? sourcemaps.init() : gutil.noop())
 
         // prevent pipe breaking caused by errors
         .pipe(plumber())
@@ -32,7 +32,7 @@ const task = (cb) => {
         .pipe(sassGlob())
 
         .pipe(sassVariables({
-            $env: gutil.env.production ? 'production' : 'development'
+            $env: process.env.APP_ENV
         }))
 
         // compile sass
@@ -66,14 +66,14 @@ const task = (cb) => {
         .pipe(plumber.stop())
 
         // compress (production)
-        .pipe(gutil.env.production ? nano(config.cssnano) : gutil.noop())
+        .pipe('prod' === process.env.APP_ENV ? nano(config.cssnano) : gutil.noop())
 
         // log
         .pipe(!hasErrors ? gutil.noop(gutil.log(gutil.colors.white('CSS files generated:'))) : gutil.noop())
         .pipe(size({title: 'Styles:', showFiles: true}))
 
         // write sourcemaps (development)
-        .pipe(!gutil.env.production ? sourcemaps.write('.') : gutil.noop())
+        .pipe('prod' !== process.env.APP_ENV ? sourcemaps.write('.') : gutil.noop())
 
         .pipe(cssimport({}))
 

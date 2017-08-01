@@ -2,6 +2,8 @@ const gulp = require('gulp');
 const gulpSequence = require('gulp-sequence');
 const requireDir = require('require-dir');
 
+require('dotenv').load();
+
 // Require all tasks in gulpfile.js/tasks, including subfolders
 requireDir('./tasks', { recurse: true });
 

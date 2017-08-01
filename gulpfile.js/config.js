@@ -10,8 +10,7 @@ const config = {
     // Browsersync
     // https://www.browsersync.io/docs/options
     'browserSync': {
-        "startPath": "/app_dev.php/",
-        "proxy": "project.loc",
+        "proxy": process.env.APP_HOST,
         'port': 3000,
         'open': false,
         'reloadOnRestart': true,

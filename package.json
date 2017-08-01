@@ -27,6 +27,7 @@
         "check-dependencies": "^1.0.1",
         "cpy": "^5.1.0",
         "del": "^3.0.0",
+        "dotenv": "^4.0.0",
         "gulp": "^3.9.1",
         "gulp-count": "^0.3.0",
         "gulp-cssimport": "^5.0.0",
