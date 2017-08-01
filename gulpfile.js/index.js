@@ -12,6 +12,7 @@ const tasks = [];
 tasks.default = gulpSequence(
     'init',
     'clean',
+    'modernizr',
     'styles',
     'scripts',
     'images',
@@ -23,6 +24,7 @@ tasks.default = gulpSequence(
 tasks.build = gulpSequence(
     'init',
     'clean',
+    'modernizr',
     'styles',
     'scripts',
     'images',

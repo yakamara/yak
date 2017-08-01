@@ -54,6 +54,18 @@ const config = {
         'cleanFiles': ['./public/assets/images/**/*.{jpg,png,gif,svg,ico}']
     },
 
+    // Modernizr
+    // https://modernizr.com/docs
+    'modernizr': {
+        'feature-detects': [
+            'touchevents'
+        ],
+        'options': [
+            'setClasses'
+        ],
+        'classPrefix': ''
+    },
+
     // Scripts
     'scripts': {
         'sourceFiles': ['./assets/scripts/script.js'],
