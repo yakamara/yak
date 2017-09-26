@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 printf "REDAXO Pre Setup\n"
 
 mkdir bin
@@ -20,3 +22,4 @@ cp setup/path_provider.php src/path_provider.php
 
 rm -rf public/redaxo/bin
 rm -rf public/redaxo/src
+rm -rf setup
