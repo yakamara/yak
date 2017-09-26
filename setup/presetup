@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+printf "REDAXO Pre Setup\n"
+
+mkdir bin
+mkdir src
+mkdir var
+
+mv public/redaxo/bin/* bin
+mv public/redaxo/cache var
+mv public/redaxo/data var
+mv public/redaxo/src/addons src
+mv public/redaxo/src/core src
+
+
+cp setup/deploy.php deploy.php
+cp setup/index.backend.php public/redaxo/index.php
+cp setup/index.frontend.php public/index.php
+cp setup/path_provider.php src/path_provider.php
+
+rm -rf public/redaxo/bin
+rm -rf public/redaxo/src
