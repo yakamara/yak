@@ -1,86 +1,143 @@
 @charset "utf-8";
 
+//== Environment
+//====================================================
 $env: 'dev' !default;
 
-//== sass-mq Variables
-/// Breakpoint list
-$breakpoints: (
-    mobile:  320px,
-    tablet:  740px,
-    desktop: 980px,
-    wide:    1300px,
-    watson:  980px, // show/hidden burger icon
+//== Variables
+//====================================================
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1600px,
+    xxxl: 1920px
 );
 
-/// Static breakpoint (for fixed-width layouts)
-$static-breakpoint: desktop;
+$container-max-width: 73.125rem;
 
-/// Show breakpoints in the top right corner
-$show-breakpoints: ();
+// Static breakpoint (for fixed-width layouts)
+$grid-static-breakpoint: lg;
+
+// Show breakpoints in the top right corner
+$grid-show-breakpoints: ();
 @if $env == 'dev' {
-    $show-breakpoints: (mobile, tablet, desktop, wide);
+    $grid-show-breakpoints: (sm, md, lg, xl, xxl, xxxl);
 }
 
+$grid-columns: 12;
+
+$grid-gutter-width-base: 1.875rem;
+$grid-gutter-width-half: $grid-gutter-width-base / 2;
+$grid-gutter-widths: (
+    xs: $grid-gutter-width-base,
+    sm: $grid-gutter-width-base,
+    md: $grid-gutter-width-base,
+    lg: $grid-gutter-width-base,
+    xl: $grid-gutter-width-base,
+    xxl: $grid-gutter-width-base,
+    xxxl: $grid-gutter-width-base
+);
+
+$grid-visual: false;
+
+//== mq-sass Variables
+//====================================================
+//-- Breakpoint list
+$mq-breakpoints: map-merge(map-remove($grid-breakpoints, xs), (watson: 992px, sherlock: 1170px));
+//-- Static breakpoint (for fixed-width layouts)
+$mq-static-breakpoint: $grid-static-breakpoint;
+//-- Show breakpoints in the top right corner
+$mq-show-breakpoints: $grid-show-breakpoints;
 
 //== Neat Variables
-$visual-grid: true !global;
-$column: (70 * 100 / 1170) * 1% !global;
-$gutter: (30 * 100 / 1170) * 1% !global;
-$grid-columns: 12 !global;
-$max-width: 73.125rem !global; // 1170px
-
-$gutter-width: 1.875rem; // 30px
-$gutter-half-width: ($gutter-width / 2);
-
-//== Font Path
-$font-path:          "../../../assets/fonts";
-
-//== Image Path
-/// background-image: url('#{$img-path}/file.svg');
-$img-path:          "../../../assets/img";
+//====================================================
+$neat-grid: (
+    columns: $grid-columns,
+    gutter: $grid-gutter-width-base,
+);
 
 //== Asset Path
-$asset-path:          "/media";
+$asset-path: "/media";
 
+//== Font Path
+$font-path: "../fonts";
+
+//== Image Path
+$img-path: "../images";
 
 //== Colors
-$color-a-lighter:   #f1f1f1;    // Grey
-$color-a-light:     #c5cdcd;
-$color-a:           #959c9c;
-$color-a-dark:      #494b4b;
-$color-a-darker:    #1e2122;
+$color-a-lighter: #f1f1f1; // Grey
+$color-a-light: #c5cdcd;
+$color-a: #959c9c;
+$color-a-dark: #494b4b;
+$color-a-darker: #1e2122;
 
-$color-b:           #f4461c;    // Orange
+$color-b: #f4461c; // Orange
 
+$primary-color: $color-b;
+$secondary-color: $color-a;
 
-$brand-color:       $color-b;
-$text-color:        $color-a-darker;
+$brand-color: $color-b;
+$text-color: $color-a-darker;
+$hr-color: #000;
 
+$font-heading: 'Merriweather', Helvetica, Arial, sans-serif;
+$font-icon: 'FontAwesome';
 $font-text: 'Poppins', Helvetica, Arial, sans-serif;
-$font-headings: 'Merriweather', Helvetica, Arial, sans-serif;
+$font-weight: 700;
 
-$fs-1: 2.1875rem;   // 35
-$fs-2: 1.5625rem;   // 25
-$fs-3: 1.25rem;     // 20
-$fs-4: 1.0625rem;   // 17
-$fs-5: 1rem;        // 16
-$fs-6: 0.875rem;    // 14
-$fs-base: $fs-6;
+$fs-1: 2.1875rem; // 35
+$fs-2: 1.5625rem; // 25
+$fs-3: 1.25rem; // 20
+$fs-4: 1.0625rem; // 17
+$fs-5: 1rem; // 16
+$fs-6: 0.875rem; // 14
+$fs-7: 0.75rem; // 14
+$fs-base: $fs-5;
+$fs-icon-large: $fs-1;
+$fs-large: $fs-1;
+$fs-small: $fs-6;
+$fs-smaller: $fs-7;
+
 $lh-base: 1.6;
+$lh-large: $lh-base * 1.5;
 
+$em-base-init: 16px;
+$em-base-tablet: 14px;
+$em-base-mobile: 12px;
 
 $spacing: $lh-base * 1em;
 $spacing-half: $spacing / 2;
 $spacing-double: $spacing * 2;
 
-$button-padding: 0.5rem 1.5rem;
-$button-border-radius: 0;
-$button-border-width: 0;
-$button-font-size: $fs-base;
-$button-font-weight: 600;
+// - - - - - - - - - - - - - - - - - - - -
+$padding-base-x: .75rem;
+$padding-base-y: .28rem;
+$padding-large-x: 1rem;
+$padding-large-y: .625rem;
+$padding-small-x: .625rem;
+$padding-small-y: .25rem;
 
-$base-duration: 150ms;
-$base-timing: ease;
+$alert-danger-color: #fff;
+$alert-danger-background: #b00;
+$alert-success-color: $text-color;
+$alert-success-background: #fff;
+
+$border-color-base: $color-a-darker;
+$border-radius-base: 1rem;
+
+$button-a-padding: $padding-base-y $padding-base-x;
+$button-a-border-radius: $border-radius-base;
+$button-a-border-width: 0;
+$button-a-font-size: $fs-5;
+$button-a-font-weight: $font-weight;
+
+$transition-duration: 200ms;
+$transition-timing: ease-in-out;
+$transition-base: all $transition-duration $transition-timing;
 
 $collapsible-border-color: $color-a;
 $collapsible-header-color: $color-a;
@@ -99,14 +156,33 @@ $dropdown-item-line-height: $lh-base;
 
 $form-background-color: #fff;
 $form-border-color-focus: $text-color;
-$form-border-color: $text-color;
-$form-border: 1px solid $form-border-color;
-$form-border-radius: 0;
+$form-border-color: #fff;
+$form-border-width: 1px;
+$form-border: $form-border-width solid $form-border-color;
+$form-border-radius: 3px;
 $form-box-shadow-focus: none;
 $form-box-shadow: none;
 $form-font-size: $fs-base;
+$form-line-height: $lh-base;
+$form-padding: $padding-base-y $padding-base-x;
 $form-placeholder-color: lighten($text-color, 5%);
-$form-text-color: $text-color;
+$form-text-color: #7B909A;
+
+
+//== Hamburgers Variables
+$hamburger-padding-x: 0.5rem;
+$hamburger-padding-y: 0;
+$hamburger-types: (squeeze);
+$hamburger-layer-width: 20px;
+$hamburger-layer-height: 3px;
+$hamburger-layer-spacing: 3px;
+$hamburger-layer-border-radius: 2px;
+$hamburger-layer-color: #fff;
+$hamburger-hover-opacity: 1;
+
+//$hamburger-layer-border-radius             : 4px !default;
+//$hamburger-hover-transition-duration       : 0.15s !default;
+//$hamburger-hover-transition-timing-function: linear !default;
 
 /*
 $theme-prefix: 'theme';
