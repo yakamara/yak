@@ -16,6 +16,7 @@ mv public/redaxo/src/core src
 
 
 cp setup/addon.project.boot.php src/addons/project/boot.php
+cp setup/console bin/console
 cp setup/deploy.php deploy.php
 cp setup/index.backend.php public/redaxo/index.php
 cp setup/index.frontend.php public/index.php
