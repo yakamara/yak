@@ -23,34 +23,44 @@ window.jQuery = $;
 window.getSize = require('get-size');
 const Masonry = require('masonry-plus');
 
-watching('[data-yfilter]', {
-    init() {
-        let item = this.$element.data('item');
-        this.masonry = new Masonry(this.element, {
-            'itemSelector': item,
-            'columnWidth': item
-        });
+require('imagesloaded');
 
-        this.filters = this.$element.data('toggle');
-        let $filters = $(this.filters);
-        $filters.find('[data-filter]').on('click', event => this.filter(event));
+$(window).on("load", function() {
+    watching('[data-yfilter]', {
+        init() {
+            let item = this.$element.data('item');
+            this.masonry = new Masonry(this.element, {
+                'itemSelector': item,
+                'columnWidth': item
+            });
 
-        let $active = $filters.find('.active').not('[data-filter="*"]');
-        if ($active.length > 0) {
-            $active.trigger('click');
-        } else {
-            $filters.find('[data-filter="*"]').not('.active').addClass('active');
+            this.filters = this.$element.data('toggle');
+            let $filters = $(this.filters);
+            $filters.find('[data-filter]').on('click', event => this.filter(event));
+
+            let $active = $filters.find('.active').not('[data-filter="*"]');
+            if ($active.length > 0) {
+                $active.trigger('click');
+            } else {
+                $filters.find('[data-filter="*"]').not('.active').addClass('active');
+            }
+
+            this.$element.imagesLoaded().progress(() => {
+                this.masonry.layout();
+            });
+        },
+
+        filter(event) {
+            const filter = $(event.target).data('filter');
+            this.masonry.layout({
+                filter: filter
+            });
+
+            this.$element.trigger('filter:changed', [filter]);
+
+            $(this.filters).find('.active').removeClass('active');
+            $(event.target).addClass('active');
         }
-
-    },
-
-    filter(event) {
-        this.masonry.layout({
-            filter: $(event.target).data('filter')
-        });
-
-        $(this.filters).find('.active').removeClass('active');
-        $(event.target).addClass('active');
-    }
+    });
 });
 
