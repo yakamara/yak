@@ -1,21 +1,27 @@
 const gulp = require('gulp');
 const gutil = require('gulp-util');
-const gulpSequence = require('gulp-sequence');
 const copy = require('cpy');
+const pSeries = require('p-series');
+const _ = require('lodash');
 
-// copy fontawesom icon fonts (npm package)
-gulp.task('copy:fontawesome', (cb) => {
-    let src = ['./node_modules/font-awesome/fonts/*.{woff,woff2}'];
-    let dest = './public/assets/fonts';
-    copy(src, dest, {}).then((res) => {
-        if (res.length > 0) {
-            gutil.log(gutil.colors.white('Copied font-awesome icon files: ' + gutil.colors.magenta(res.length)));
-        }
-        cb();
+// load config
+const config = require('../config');
+
+const task = (cb) => {
+
+    let tasks = [];
+    // loop through copy tasks (see config) and fill an array with results from copy functions (promises!)
+    _.forEach(config.copy, function (v) {
+        tasks.push(() => copy(v.src, v.dest, {}).then((res) => {
+            if (res.length > 0) {
+                gutil.log(gutil.colors.white('Copied ' + v.title + ': ' + gutil.colors.magenta(res.length)));
+            }
+        }));
     });
-});
 
-const task = gulpSequence('copy:fontawesome');
+    // run tasks in series, then use callback to finish gulp copy task
+    pSeries(tasks).then(result => cb());
+};
 
 gulp.task('copy', task);
 module.exports = task;

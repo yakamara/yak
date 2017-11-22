@@ -30,6 +30,16 @@ const config = {
         ]
     },
 
+    // Copy
+    // copy assets from source to app
+    'copy': [
+        {
+            'title': 'Font - FontAwesome',
+            'src': ['./node_modules/font-awesome/fonts/*.{eot,svg,ttf,woff,woff2}'],
+            'dest': './public/assets/fonts/FontAwesome'
+        }
+    ],
+
     // cssnano (minifies CSS)
     // http://cssnano.co/options/
     'cssnano': {
