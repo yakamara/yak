@@ -53,13 +53,11 @@ const config = {
     // Images
     'images': {
         'sourceFiles': [
-            './assets/images/*.{jpg,png,gif,svg,ico}',
-            './node_modules/bootstrap-colorpicker/dist/img/**/*.{jpg,png,gif,svg}'
+            './assets/images/*.{jpg,png,gif,svg,ico}'
         ],
         'destinationFolder': './public/assets/images/',
         'watchFiles': [
-            './assets/images/*.{jpg,png,gif,svg,ico}',
-            './node_modules/bootstrap-colorpicker/dist/img/**/*.{jpg,png,gif,svg}'
+            './assets/images/*.{jpg,png,gif,svg,ico}'
         ],
         'cleanFiles': ['./public/assets/images/**/*.{jpg,png,gif,svg,ico}']
     },
