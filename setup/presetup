@@ -1,9 +1,58 @@
 #!/usr/bin/env bash
 
 set -e
+CRED='\033[0;31m'
+CGREEN='\033[0;32m'
+CNO='\033[0m' # No Color
 
-printf "REDAXO Pre Setup\n"
 
+echo -e "${CRED}
+- - - - - - - - - - - -
+Yak REDAXO Pre Setup
+- - - - - - - - - - - -
+${CNO}"
+
+
+source $(dirname $0)/setup.cfg
+
+echo -e "${CRED}
+Reading config file
+- - - - - - - - - - - -
+    REDAXO install version: ${CNO}$REDAXO_VERSION${CRED}
+    REDAXO shasum: ${CNO}$REDAXO_SHA${CRED}
+${CNO}"
+
+# rename env
+if [ -f .env.dist ]; then
+    mv .env.dist .env
+    echo -e "${CGREEN}.env.dist was renamed to .env${CNO}"
+fi
+
+
+# make tmp folders
+if [ ! -d ./tmp ]; then
+    mkdir tmp/
+    mkdir ./tmp/redaxo
+fi
+
+# load redaxo
+echo -e "${CRED}
+Load REDAXO zip file
+- - - - - - - - - - - -${CNO}"
+curl -Ls -o ./tmp/redaxo/redaxo_${REDAXO_VERSION}.zip https://github.com/redaxo/redaxo/releases/download/${REDAXO_VERSION}/redaxo_${REDAXO_VERSION}.zip
+echo "${REDAXO_SHA} *./tmp/redaxo/redaxo_${REDAXO_VERSION}.zip" | shasum -c -a 256
+unzip -oq ./tmp/redaxo/redaxo_${REDAXO_VERSION}.zip -d ./public
+
+echo -e "${CGREEN}
+Redaxo ${REDAXO_VERSION}${CNO} was sussessful loaded and unzipped into the public folder"
+
+
+
+
+# create Yakamara file structure
+echo -e "${CRED}
+Create Yakamara file structure
+- - - - - - - - - - - -${CNO}"
 mkdir bin
 mkdir src
 mkdir var
@@ -14,7 +63,6 @@ mv public/redaxo/data var
 mv public/redaxo/src/addons src
 mv public/redaxo/src/core src
 
-
 cp setup/addon.project.boot.php src/addons/project/boot.php
 cp setup/console bin/console
 cp setup/deploy.php deploy.php
@@ -22,6 +70,96 @@ cp setup/index.backend.php public/redaxo/index.php
 cp setup/index.frontend.php public/index.php
 cp setup/path_provider.php src/path_provider.php
 
+echo -e "${CGREEN}File structure${CNO} was successful created"
+
+
+
+# load addons
+echo -e "${CRED}
+Load REDAXO AddOns
+- - - - - - - - - - - -
+${CNO}"
+
+# structure_tweaks
+read -p "Load FriendsOfREDAXO addons [adminer bloecks developer focuspoint mblock multiupload quick_navigation redactor2]:" repos
+
+if [ -z "$repos" ]; then
+    repos=("adminer" "bloecks" "developer" "focuspoint" "mblock" "multiupload" "quick_navigation" "redactor2")
+fi
+
+for repo in ${repos[@]}
+do
+    set -e
+    curl -Ls -o ./tmp/${repo}_repo.json https://api.github.com/repos/FriendsOfREDAXO/${repo}/releases/latest
+    zipball_url=`php -r "echo json_decode(file_get_contents('./tmp/${repo}_repo.json'))->zipball_url;"`
+    curl -Ls -o ./tmp/${repo}.zip ${zipball_url}
+    unzip -oq ./tmp/${repo}.zip -d ./tmp
+    mv ./tmp/*${repo}*/ ./src/addons/${repo}/;
+
+    echo -e "${CGREEN}${repo}${CNO} was successful loaded and unzipped into the addon folder"
+
+done
+
+
+
+#read -p "Load Yakamara addons [redaxo_yform redaxo_yrewrite ydeploy]:" repos
+#
+#if [ -z "$repos" ]; then
+#    repos=("redaxo_yform" "redaxo_yrewrite" "ydeploy")
+#fi
+#
+#for repo in ${repos[@]}
+#do
+#    set -e
+#    curl -Ls -o ./tmp/${repo}_repo.json https://api.github.com/repos/yakamara/${repo}/releases/latest
+#    zipball_url=`php -r "echo json_decode(file_get_contents('./tmp/${repo}_repo.json'))->zipball_url;"`
+#    curl -Ls -o ./tmp/${repo}.zip ${zipball_url}
+#    unzip -oq ./tmp/${repo}.zip -d ./tmp
+#    mv ./tmp/*${repo}*/ ./src/addons/${repo}/;
+#
+#    echo -e "${CGREEN}${repo}${CNO} was successful loaded and unzipped into the addon folder"
+#
+#done
+
+
+
+read -p "Load tbaddade addons [redaxo_sprog redaxo_url redaxo_watson]:" repos
+
+if [ -z "$repos" ]; then
+    repos=("redaxo_sprog" "redaxo_url" "redaxo_watson")
+fi
+
+for repo in ${repos[@]}
+do
+    set -e
+    curl -Ls -o ./tmp/${repo}_repo.json https://api.github.com/repos/tbaddade/${repo}/releases/latest
+    zipball_url=`php -r "echo json_decode(file_get_contents('./tmp/${repo}_repo.json'))->zipball_url;"`
+    curl -Ls -o ./tmp/${repo}.zip ${zipball_url}
+    unzip -oq ./tmp/${repo}.zip -d ./tmp
+    mv ./tmp/*${repo}*/ ./src/addons/${repo}/;
+
+    echo -e "${CGREEN}${repo}${CNO} was successful loaded and unzipped into the addon folder"
+
+done
+
+
+repos_rename=("sprog" "url" "watson" "yform" "yrewrite")
+
+for repo in ${repos_rename[@]}
+do
+    set -e
+    if [ -d ./src/addons/redaxo_${repo} ]; then
+        mv ./src/addons/redaxo_${repo} ./src/addons/${repo};
+    fi
+
+done
+
+
+# remove
 rm -rf public/redaxo/bin
 rm -rf public/redaxo/src
 rm -rf setup
+rm -rf tmp
+
+# execute yarn
+yarn
