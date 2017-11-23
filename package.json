@@ -8,6 +8,7 @@
         "jquery.inputmask": "^3.3.1",
         "masonry-plus": "^1.1.0",
         "moment": "^2.18.1",
+        "normalize-scss": "^7.0.0",
         "owl.carousel": "github:owlcarousel2/OwlCarousel2",
         "scrollme": "github:tobaco/scrollme",
         "select2": "^4.0.3",
