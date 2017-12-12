@@ -38,3 +38,25 @@ REDAXO wird automatisch installiert und eine vorhandene Instanz wird überschrie
     - cache/
     - data/
 ```
+
+**weitere Einstellungen und VOrraussetzungen
+
+* developer AddOn installieren, falls nicht über das Setup bereits getan
+* ydeploy AddOn installieren, falls nicht über das Setup bereits getan
+
+**Einstellungen Developer
+
+Lokal
+* Templates synchronisieren
+* Module synchronisieren
+* Actions synchronisieren
+* Im Frontend synchronsieren (nur wenn als Admin in Backend eingeloggt)
+* Im Backend synchronsieren (nur wenn als Admin eingeloggt)
+* Datei- und Ordnernamen aktuell halten
+* Item-Ordner löschen nach dem Löschen eines Items über das Backend
+
+Live
+
+* Templates synchronisieren
+* Module synchronisieren
+* Actions synchronisieren
