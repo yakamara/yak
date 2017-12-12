@@ -1,9 +1,5 @@
 # Yak
 
-Yak laden
-
-REDAXO 5 laden via `http://local.dev/load-redaxo.php`
-
 **Konsole**
 
 Ausführen `$ setup/presetup`
