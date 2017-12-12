@@ -60,3 +60,44 @@ Live
 * Templates synchronisieren
 * Module synchronisieren
 * Actions synchronisieren
+
+
+** Über folgende Einträge und Script kann man eine Kennung eintragen in welcher Umgebung man sich befindet
+
+* Über Adminer oder Datenbanktool in die rex_config Tabelle folgenden Eintrag:
+** namespace: project, key: env, value: production oder developer
+
+
+folgenden Code in die Boot.php vom project AddOn und die CSS Dateien entsprechend ergänzen im project assets ordner:
+
+```
+css/ydeploy-production.css
+css/ydeploy-development.css
+```
+
+```
+// YDeploy
+// - - - - - - - - - - - - - - - - - - - - - - - - - -
+if (\rex::isBackend() && \rex_addon::get('ydeploy')->isAvailable()) {
+    \rex_view::addCssFile($this->getAssetsUrl('css/ydeploy.css'));
+    if (\rex_addon::get('project')->getConfig('env') == 'production') {
+        \rex_view::addCssFile($this->getAssetsUrl('css/ydeploy-production.css'));
+    } else {
+        \rex_view::addCssFile($this->getAssetsUrl('css/ydeploy-development.css'));
+    }
+    rex_extension::register('OUTPUT_FILTER', function(rex_extension_point $ep) {
+        $project = \rex_addon::get('project');
+        $env = $project->getConfig('env') == 'production' ? 'Production' : 'Development';
+        $version = isset($project->getProperty('app')['version']) ? ' - <small>Version ' . $project->getProperty('app')['version'] : '';
+        $ep->setSubject(
+            str_replace(
+                '</body>',
+                '<div class="ydeploy-badge">' . $env . $version . '</small></div></body>',
+                $ep->getSubject()
+            )
+        );
+    });
+}
+```
+
+
