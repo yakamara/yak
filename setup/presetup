@@ -24,8 +24,8 @@ ${CNO}"
 
 # rename env
 if [ -f .env.dist ]; then
-    mv .env.dist .env
-    echo -e "${CGREEN}.env.dist was renamed to .env${CNO}"
+    cp .env.dist .env
+    echo -e "${CGREEN}.env.dist was copied to .env${CNO}"
 fi
 
 
