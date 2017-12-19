@@ -132,9 +132,9 @@ Wenn man Lokal Datenbankänderungen vorgenommen hat, zuvor `$ bin/console ydeplo
 - [x] Im Frontend synchronsieren (nur wenn als Admin in Backend eingeloggt)
 - [x] Im Backend synchronsieren (nur wenn als Admin eingeloggt)
 - [x] Datei- und Ordnernamen aktuell halten
-- [_] Ordnernamen mit ID als Suffix
-- [_] Präfix für Dateinamen (enthält ID und Name)
-- [_] Umlaute in Namen beibehalten (Deprecated; die Option wird in der nächsten Major-Version wegfallen und somit immer deaktiviert sein)
+- [ ] Ordnernamen mit ID als Suffix
+- [ ] Präfix für Dateinamen (enthält ID und Name)
+- [ ] Umlaute in Namen beibehalten (Deprecated; die Option wird in der nächsten Major-Version wegfallen und somit immer deaktiviert sein)
 - [x] Item-Ordner löschen nach dem Löschen eines Items über das Backend
 
 
@@ -143,13 +143,13 @@ Wenn man Lokal Datenbankänderungen vorgenommen hat, zuvor `$ bin/console ydeplo
 - [x] Templates synchronisieren
 - [x] Module synchronisieren
 - [x] Actions synchronisieren
-- [_] Im Frontend synchronsieren (nur wenn als Admin in Backend eingeloggt)
-- [_] Im Backend synchronsieren (nur wenn als Admin eingeloggt)
-- [_] Datei- und Ordnernamen aktuell halten
-- [_] Ordnernamen mit ID als Suffix
-- [_] Präfix für Dateinamen (enthält ID und Name)
-- [_] Umlaute in Namen beibehalten (Deprecated; die Option wird in der nächsten Major-Version wegfallen und somit immer deaktiviert sein)
-- [_] Item-Ordner löschen nach dem Löschen eines Items über das Backend
+- [ ] Im Frontend synchronsieren (nur wenn als Admin in Backend eingeloggt)
+- [ ] Im Backend synchronsieren (nur wenn als Admin eingeloggt)
+- [ ] Datei- und Ordnernamen aktuell halten
+- [ ] Ordnernamen mit ID als Suffix
+- [ ] Präfix für Dateinamen (enthält ID und Name)
+- [ ] Umlaute in Namen beibehalten (Deprecated; die Option wird in der nächsten Major-Version wegfallen und somit immer deaktiviert sein)
+- [ ] Item-Ordner löschen nach dem Löschen eines Items über das Backend
 
 
 
