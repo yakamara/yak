@@ -48,7 +48,7 @@
     Ausführen  `$ cd ~/Sites/yak.project`
 
 
-3. REDAXO wird mit Ausführung des nächsten Befeheles automatisch installiert und eine vorhandene Instanz wird überschrieben. Wenn das nicht gewünscht ist, die Zeilen im presetup entsprechend auskommentieren.
+3. REDAXO wird mit Ausführung des nächsten Befehles automatisch installiert und eine vorhandene Instanz wird überschrieben. Wenn das nicht gewünscht ist, die Zeilen im `setup/presetup` entsprechend auskommentieren.
 
     Ausführen `$ setup/presetup`
 
@@ -87,7 +87,7 @@
         - data/
     ```
 
-4. REDAXO Setup via Browser und Url `project.yak/redaxo` starten
+4. REDAXO Setup via Browser und Url `http://project.yak/redaxo` starten
 
 ## weitere Einstellungen und Vorraussetzungen
 
@@ -101,7 +101,7 @@
 _alle Befehle gehen direkt vom Projektordner aus._  `~/Sites/yak.project`
 
 - Datenbankdump der lokalen Instanz erstellen und auf Live via Adminer oder Datenbanktool einspielen
-- `deploy.php` in der lokalen Instanz für Server angepassen
+- `deploy.php` in der lokalen Instanz für Server anpassen
 - Ausführen `$ bin/console ydeploy:diff`
 - lokalen Stand auf Github pullen
 - Ausführen `$ dep deploy` (hier kommt es absichtlich noch zu einem Fehler, aber die Grundstruktur ist schon mal auf dem Server)
@@ -115,7 +115,7 @@ _alle Befehle gehen direkt vom Projektordner aus._  `~/Sites/yak.project`
 
 - Ausführen `$ dep deploy:unlock`
 - Ausführen `$ dep deploy` (diesmal sollte kein Fehler mehr kommen)
-- Arbeitsdomain auf `current/public` zeigen lassen (Der Pfad muss zumeist per Hand notiert werden, da es ein Symlink ist)
+- Domain der Live-Instanz auf `current/public` zeigen lassen (Der Pfad muss zumeist per Hand notiert werden, da es ein Symlink ist)
 
 Wenn man Lokal Datenbankänderungen vorgenommen hat, zuvor `$ bin/console ydeploy:diff` aufrufen, und die geänderten bzw. neu angelegte Dateien mit committen.
 
@@ -169,7 +169,7 @@ Wenn man Lokal Datenbankänderungen vorgenommen hat, zuvor `$ bin/console ydeplo
 
 Hat man das [Yakme AddOn](https://github.com/yakamara/yakme) installiert, kann nachfolgender Part ignoriert werden.
 
-Folgenden Code in die `boot.php` vom `project` AddOn und die CSS Dateien entsprechend im project assets Ordner ergänzen:
+Folgenden Code in die `boot.php` vom `project` AddOn der lokalen Instanz und die CSS Dateien entsprechend im project assets Ordner ergänzen:
 
 ```
 css/ydeploy-development.css
@@ -202,13 +202,24 @@ if (\rex::isBackend() && \rex_addon::get('ydeploy')->isAvailable()) {
 }
 ```
 
+In der `package.yml` des project AddOns ergänzen
+
+```
+app:
+    version: '1.0.0-dev1'
+```
+
+Vor jedem deployen die Version in der `package.yml` als letzten Schritt hochsetzen und committen.
+
+
+Durch das nächste Deployen, wird dann auch die Live Instanz farblich kenntlich gemacht und die Version angezeigt.
 
 
 ### zusätzliche Tabellen synchronisieren lassen
 
 Da man lokal am Anfang zumeist die Struktur wie vom Kunden gewünscht aufsetzt und ggf. auch die ersten Slices als Beispiele in der Live-Instanz bereitstellen möchte, kann man mit folgendem Skript diese Tabellen synchronisieren.
 
-Sobald an der Live-Instanz redaktionell gearbeitet wird, sollte das Skript wieder entfernt werden. Ansonsten gehen die Daten der Live-Instanz verloren.
+**!** Sobald jedoch an der Live-Instanz redaktionell gearbeitet wird, sollte das Skript wieder entfernt werden. Ansonsten gehen die Daten der Live-Instanz verloren.
 
 Das Skript in die `boot.php`des `project` AddOns der **lokalen Instanz** einfügen
 
