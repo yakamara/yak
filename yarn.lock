@@ -4257,6 +4257,10 @@ modernizr@^3.5.0:
     requirejs "2.1.22"
     yargs "7.0.2"
 
+modularscale-sass@2:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/modularscale-sass/-/modularscale-sass-2.1.1.tgz#a42c3a392457ac83a6b8c29a183c95540e6b388b"
+
 module-deps@^4.0.8:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/module-deps/-/module-deps-4.1.1.tgz#23215833f1da13fd606ccb8087b44852dcb821fd"
@@ -6197,6 +6201,10 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
 typedarray@^0.0.6, typedarray@~0.0.5:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
+
+typi@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/typi/-/typi-3.1.2.tgz#8933f7daf526ca3cd7b2375928c1595da0c1b3b4"
 
 ua-parser-js@0.7.12:
   version "0.7.12"

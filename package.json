@@ -9,12 +9,14 @@
         "jquery": "^3.2.1",
         "jquery.inputmask": "^3.3.1",
         "masonry-plus": "^1.1.0",
+        "modularscale-sass": "2",
         "moment": "^2.18.1",
         "normalize-scss": "^7.0.0",
         "owl.carousel": "github:owlcarousel2/OwlCarousel2",
         "sass-mq": "^3.2.9",
         "scrollme": "github:tobaco/scrollme",
         "select2": "^4.0.3",
+        "typi": "^3.1.2",
         "waypoints": "^4.0.1"
     },
     "devDependencies": {
