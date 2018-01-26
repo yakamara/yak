@@ -1,14 +1,17 @@
 # Yak
 
+- [Allgemeines Arbeiten](#anker-allgemeines-arbeiten)
+- [Vorbereitung für ein bestehendes Projekt](#anker-bestehendes-projekt)
+- [Vorbereitung für ein neues Projekt](#anker-neues-projekt)
 
-
-## Vorbereitung
+<a name="anker-neues-projek"></a>
+## Vorbereitung für ein neues Projekt
 
 1. Ordner für das Projekt lokal anlegen (Bsp. `~/Sites/yak.project`)
 
-1. privates Github Repo erstellen und via Git in Projektordner klonen
+1. Wenn nicht bereits geschehen, ein privates Github Repo erstellen (Readme mit anlegen lassen) via Git Client in Projektordner klonen
 
-1. Yak holen und in Projektordner legen
+1. Yak herunterladen und in Projektordner legen
 
 1. `hosts` Datei öffnen und ergänzen
 
@@ -39,7 +42,7 @@
     ```
 
 
-## Konsole
+### Konsole
 
 1. Apache neu starten
 
@@ -89,14 +92,14 @@
 
 4. REDAXO Setup via Browser und Url `http://project.yak/redaxo` starten
 
-## weitere Einstellungen und Vorraussetzungen
+### weitere Einstellungen und Vorraussetzungen
 
 * developer AddOn installieren, falls nicht über das Setup bereits getan
 * ydeploy AddOn installieren, falls nicht über das Setup bereits getan
 
 
 
-### Deployment
+#### Deployment
 
 _alle Befehle gehen direkt vom Projektordner aus._  `~/Sites/yak.project`
 
@@ -108,7 +111,7 @@ _alle Befehle gehen direkt vom Projektordner aus._  `~/Sites/yak.project`
 
 **auf dem Live Server via FTP Client**
 
-- `src/core/default.config.yml` nach `data/core/config.yml` kopieren
+- `/releases/1/src/core/default.config.yml` nach `/shared/var/data/core/config.yml` kopieren
 - `data/core/config.yml` öffnen und
     - `setup` auf `false`
     - Datenbankverbindung der Live-Instanz eingetragen
@@ -117,12 +120,8 @@ _alle Befehle gehen direkt vom Projektordner aus._  `~/Sites/yak.project`
 - Ausführen `$ dep deploy` (diesmal sollte kein Fehler mehr kommen)
 - Domain der Live-Instanz auf `current/public` zeigen lassen (Der Pfad muss zumeist per Hand notiert werden, da es ein Symlink ist)
 
-Wenn man Lokal Datenbankänderungen vorgenommen hat, zuvor `$ bin/console ydeploy:diff` aufrufen, und die geänderten bzw. neu angelegte Dateien mit committen.
 
-
-
-
-### Einstellungen Developer
+#### Einstellungen Developer
 
 **Lokal**
 
@@ -154,7 +153,7 @@ Wenn man Lokal Datenbankänderungen vorgenommen hat, zuvor `$ bin/console ydeplo
 
 
 
-### Instanzen farblich kenntlich machen
+#### Instanzen farblich kenntlich machen
 
 Über folgende Einträge und Skripte kann man eine Kennung eintragen in welcher Umgebung man sich befindet
 
@@ -209,13 +208,10 @@ app:
     version: '1.0.0-dev1'
 ```
 
-Vor jedem deployen die Version in der `package.yml` als letzten Schritt hochsetzen und committen.
-
-
 Durch das nächste Deployen, wird dann auch die Live Instanz farblich kenntlich gemacht und die Version angezeigt.
 
 
-### zusätzliche Tabellen synchronisieren lassen
+#### zusätzliche Tabellen synchronisieren lassen
 
 Da man lokal am Anfang zumeist die Struktur wie vom Kunden gewünscht aufsetzt und ggf. auch die ersten Slices als Beispiele in der Live-Instanz bereitstellen möchte, kann man mit folgendem Skript diese Tabellen synchronisieren.
 
@@ -251,4 +247,70 @@ if (\rex::isBackend() && \rex_addon::get('ydeploy')->isAvailable()) {
 }
 ```
 
-Beim Befehl `$ bin/console ydeploy:diff` werden jetzt die obigen Tabellen mit berücksichtigt.
+Beim Befehl `$ bin/console `ydeploy`:diff` werden jetzt die obigen Tabellen mit berücksichtigt.
+
+
+<a name="anker-bestehendes-projek"></a>
+## Vorbereitung für ein bestehendes Projekt
+
+1. Via E-Mail wurde eine Einladung von Github für das Repo versendet. Dort den Link anklicken und man ist für das Repo freigeschalten. 
+
+1. Ordner für das Projekt lokal anlegen (Bsp. `~/Sites/yak.project`)
+
+1. Github Repo via Git Client in Projektordner klonen
+
+1. Datenbank lokal anlegen und die Datenbankverbindung in `/var/data/core/config.yml` eintragen 
+
+1. Datenbankdump von der Production/Stage/Live Umgebung holen und lokal einspielen
+> Falls der Dump via Backup-AddOn geholt wird, dann die rex_user Tabelle nicht vergessen
+
+1. `hosts` Datei öffnen und ergänzen
+
+    ```
+    127.0.0.1   project.yak
+    127.0.0.1   www.project.yak
+    ```
+
+1. `httpd-vhosts.conf` öffnen und ergänzen (`USERDIR` und ggf. `yak.project` anpassen)
+ 
+    ```
+    <VirtualHost *:80>
+        ServerName project.yak
+        ServerAlias www. project.yak
+        DocumentRoot "/Users/USERDIR/Sites/yak.project/public"
+            ErrorLog "/Users/USERDIR/Sites/Logs/yak.project-error_log"
+           CustomLog "/Users/USERDIR/Sites/Logs/yak.project-access_log" common
+    
+        <Directory "/Users/USERDIR/Sites/yak.project/public">
+            Options Indexes FollowSymLinks
+            AllowOverride All
+            Order allow,deny
+            Allow from all
+            # Nur bei Apache 2.4
+            # Require all granted
+        </Directory>
+    </VirtualHost>
+    ```
+    
+1. `/.env` Datei öffnen und anpassen
+    
+    ```
+    APP_HOST=project.yak
+    ```
+
+
+<a name="anker-allgemeines-arbeiten"></a>
+## Allgemeines Arbeiten
+
+1. Vor dem deployen, zuvor `$ bin/console ydeploy:diff` aufrufen, und die geänderten bzw. neu angelegte Dateien (fixtures, migration, schema) committen.
+
+1. `/src/addons/project/package.yml` öffnen und die Version anpassen (Diese Änderung sollte immer der letzte und ein separater Commit vor dem deployen sein)
+    
+    ```
+    app:
+        version: '1.0.0-dev1'
+    ```
+    In der Entwicklung wird dabei nur die letzte Zahl hochgesetzt
+
+1. In der Konsole `$ dep deploy` ausführen
+
