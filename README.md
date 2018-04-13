@@ -1,6 +1,7 @@
 # Yak
 
 - [Allgemeines Arbeiten](#anker-allgemeines-arbeiten)
+- [Bekannte Probleme](#anker-bekannte-probleme)
 - [Vorbereitung für ein bestehendes Projekt](#anker-bestehendes-projekt)
 - [Vorbereitung für ein neues Projekt](#anker-neues-projekt)
 
@@ -264,7 +265,7 @@ Beim Befehl `$ bin/console `ydeploy`:diff` werden jetzt die obigen Tabellen mit 
 1. Datenbankdump von der Production/Stage/Live Umgebung holen und lokal einspielen
 > Falls der Dump via Backup-AddOn geholt wird, dann die rex_user Tabelle nicht vergessen
 
-1. `hosts` Datei öffnen und ergänzen
+6. `hosts` Datei öffnen und ergänzen
 
     ```
     127.0.0.1   project.yak
@@ -313,4 +314,47 @@ Beim Befehl `$ bin/console `ydeploy`:diff` werden jetzt die obigen Tabellen mit 
     In der Entwicklung wird dabei nur die letzte Zahl hochgesetzt
 
 1. In der Konsole `$ dep deploy` ausführen
+
+
+
+<a name="anker-bekannte-probleme"></a>
+## Bekannte Probleme
+
+### Deployen in einen DomainFactory Account
+
+**Fehlermeldung in der Konsole**
+```
+[Deployer\Exception\RuntimeException]
+The command "export APP_ENV='prod'; cd /kunden/pfad/zum/ordner/releases/1 && (command -v 'php')" failed.
+Exit Code: 1 (General error)
+Host name: prod
+================
+```
+
+**Ursache**
+
+Bei DomainFactory wird in der KOnsole default PHP 4 genutzt
+
+**Lösung**
+
+Symlink auf PHP 71 setzen
+
+**Anleitung**
+
+1. auf Server via SSH einloggen
+
+1. in das Userverzeichnis `/~` wechseln
+
+1. `mkdir -p bin`
+
+1. `ln -s /usr/local/bin/php7-71LATEST-CLI bin/php`
+
+1. `.bashrc` in `/~` anlegen/editieren, und dort die PATH-Variable setzen: `export PATH=~/bin:$PATH`
+
+1. per SSH neu einloggen, sonst greift es nicht.
+
+1. prüfen mit: `php -v`
+
+
+
 
