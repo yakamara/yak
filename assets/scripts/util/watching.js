@@ -18,6 +18,10 @@ function extend(obj) {
     return obj;
 }
 
+if (!Element.prototype.matches) {
+    Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+}
+
 const selectors = [];
 
 const observer = new MutationObserver(objects => {
