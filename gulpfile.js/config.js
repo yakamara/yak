@@ -1,112 +1,53 @@
-/**
- * config
- * contains preferences for gulp tasks, folders, extensions et al
- */
+const tasks = require('@yakamara/gulp-tasks');
 
-const config = {
+tasks.require('browserSync').configure({
+    proxy: process.env.APP_HOST,
+});
 
-    // A-Z!
+tasks.require('clean').configure({
+    paths: './public/assets/{fonts,images,styles,scripts,svgs}/**/*',
+});
 
-    // Browsersync
-    // https://www.browsersync.io/docs/options
-    'browserSync': {
-        "proxy": process.env.APP_HOST,
-        'port': 3000,
-        'open': false,
-        'reloadOnRestart': true,
-        'notify': false,
-        'reloadDelay': 0,
-        'ghostMode': false // disable mirroring clicks, scrolls and forms. it’s too buggy.
+tasks.require('styles').configure({
+    source: './assets/styles/*.scss',
+    destination: './public/assets/styles',
+    sassVariables: {
+        $env: process.env.APP_ENV
     },
+});
 
-    // Clean
-    // clean asset folders before new assets are generated
-    'clean': {
-        'cleanableTasks': [
-            'images',
-            'scripts',
-            'styles',
-            'svgs'
-        ]
-    },
+tasks.require('scripts').configure({
+    source: './assets/scripts/script.js',
+    destination: './public/assets/scripts',
+});
 
-    // Copy
-    // copy assets from source to app
-    'copy': [
-        {
-            'title': 'Font - FontAwesome',
-            'src': ['./node_modules/font-awesome/fonts/*.{eot,svg,ttf,woff,woff2}'],
-            'dest': './public/assets/fonts/FontAwesome'
-        }
-    ],
+tasks.require('modernizr').configure({
+    destination: './public/assets/scripts',
+});
 
-    // cssnano (minifies CSS)
-    // http://cssnano.co/options/
-    'cssnano': {
-        'autoprefixer': false,
-        'zindex': false,
-        'discardUnused': false,
-        'mergeIdents': false,
-        'reduceIdents': false
-    },
+tasks.require('svgs').configure({
+    source: './assets/svgs',
+    destination: './public/assets/svgs',
+});
 
-    // Images
-    'images': {
-        'sourceFiles': [
-            './assets/images/*.{jpg,png,gif,svg,ico}'
-        ],
-        'destinationFolder': './public/assets/images/',
-        'watchFiles': [
-            './assets/images/*.{jpg,png,gif,svg,ico}'
-        ],
-        'cleanFiles': ['./public/assets/images/**/*.{jpg,png,gif,svg,ico}']
-    },
+const copy = tasks.require('copy');
+// copy.create('fonts', {
+//     source: './assets/fonts',
+//     files: '**/*.{woff,woff2}',
+//     destination: './public/assets/fonts'
+// });
+copy.create('font-awesome', {
+    source: './node_modules/font-awesome/fonts',
+    files: '*.{woff,woff2}',
+    destination: './public/assets/fonts'
+});
 
-    // Modernizr
-    // https://modernizr.com/docs
-    'modernizr': {
-        'feature-detects': [
-            'touchevents'
-        ],
-        'options': [
-            'setClasses'
-        ],
-        'classPrefix': ''
-    },
-
-    // Scripts
-    'scripts': {
-        'sourceFiles': ['./assets/scripts/script.js'],
-        'destinationFolder': './public/assets/scripts',
-        'watchFiles': ['./assets/scripts/**/*.js'],
-        'cleanFiles': ['./public/assets/scripts/*.{js,map}']
-    },
-
-    // Styles
-    'styles': {
-        'sourceFiles': ['./assets/styles/*.scss'],
-        'destinationFolder': './public/assets/styles',
-        'watchFiles': ['./assets/styles/**/*.scss'],
-        'cleanFiles': ['./public/assets/styles/*.{css,map}']
-    },
-
-    // SVG
-    // combines SVG files to into one with <symbol> elements (»SVG sprite«)
-    'svgs': {
-        'sourceFiles': ['./assets/svgs/**/*.svg'],
-        'destinationFolder': './public/assets/svgs',
-        'watchFiles': ['./assets/svgs/**/*.svg'],
-        'cleanFiles': ['./public/assets/svgs/*.svg']
-    },
-
-    // Watch
-    // watches for file changes and fires up related tasks
-    'watch': [
-        {'images': ['images']},
-        {'scripts': ['scripts']},
-        {'styles': ['styles']},
-        {'svgs': ['svgs']},
-    ]
-};
-
-module.exports = config;
+const images = tasks.require('images');
+images.create('images', {
+    source: './assets/images',
+    destination: './public/assets/images'
+});
+// images.create('bootstrap-colorpicker', {
+//     source: './node_modules/bootstrap-colorpicker/dist/img/bootstrap-colorpicker',
+//     destination: './public/assets/images/bootstrap-colorpicker'
+// });

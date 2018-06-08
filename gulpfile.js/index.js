@@ -1,40 +1,43 @@
 const gulp = require('gulp');
-const gulpSequence = require('gulp-sequence');
-const requireDir = require('require-dir');
+const init = require('@yakamara/gulp-tasks').require('init');
 
 require('dotenv').load();
 
-// Require all tasks in gulpfile.js/tasks, including subfolders
-requireDir('./tasks', { recurse: true });
+require('./config');
 
-// define sequences
-const tasks = [];
-tasks.default = gulpSequence(
-    'init',
-    'clean',
-    'modernizr',
-    'styles',
-    'scripts',
-    'images',
-    'svgs',
-    'copy',
-    'watch',
-    'browserSync'
-);
-tasks.build = gulpSequence(
-    'init',
-    'clean',
-    'modernizr',
-    'styles',
-    'scripts',
-    'images',
-    'svgs',
-    'copy',
-    'end'
-);
+const tasks = {
+    build: gulp.series(
+        init.gulpTask({
+            production: 'prod' === process.env.APP_ENV,
+            watching: false,
+        }),
+        'clean',
+        gulp.parallel(
+            'styles',
+            'scripts',
+            'modernizr',
+            'svgs',
+            'images',
+            'copy',
+        )
+    ),
 
-// define tasks
+    watch: gulp.series(
+        init.gulpTask({
+            production: 'prod' === process.env.APP_ENV,
+            watching: true,
+        }),
+        'clean',
+        'styles',
+        'scripts',
+        'modernizr',
+        'svgs',
+        'images',
+        'copy',
+        'browser-sync',
+    ),
+};
+
 gulp.task('build', tasks.build);
-
-// define default alias
-gulp.task('default', tasks.default);
+gulp.task('watch', tasks.watch);
+gulp.task('default', 'prod' === process.env.APP_ENV ? tasks.build : tasks.watch);
