@@ -26,7 +26,7 @@ tasks.require('modernizr').configure({
 });
 
 tasks.require('svgs').configure({
-    source: './assets/svgs',
+    source: './assets/svgs/*.svg',
     destination: './public/assets/svgs',
 });
 
