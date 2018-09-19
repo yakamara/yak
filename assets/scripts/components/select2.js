@@ -16,9 +16,9 @@ watching('select', {
 
         const options = {
             minimumResultsForSearch: 5,
-            allowClear: !$element.find('option:first').val(),
+            // allowClear: !$element.find('option:first').val(),
             language: 'de',
-            theme: "bootstrap",
+            // theme: "bootstrap",
             width: null,
         };
 
@@ -29,4 +29,4 @@ watching('select', {
 
         $element.select2(options);
     }
-})
+});
