@@ -26,4 +26,4 @@ watching('input.input-date:not([readonly])', {
             $input.inputmask('setvalue', date).trigger('change');
         }).inputmask('99.99.9999');
     }
-})
+});
