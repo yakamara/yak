@@ -18,7 +18,7 @@ const tasks = {
             'modernizr',
             'svgs',
             'images',
-            'copy',
+            'copy'
         )
     ),
 
@@ -34,7 +34,7 @@ const tasks = {
         'svgs',
         'images',
         'copy',
-        'browser-sync',
+        'browser-sync'
     ),
 };
 
