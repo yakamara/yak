@@ -8,59 +8,55 @@ fieldset {
 }
 
 legend {
-    margin-bottom: $spacing-half / 2;
+    margin-bottom: vr(.5);
     padding: 0;
     font-weight: 600;
 }
 
 label {
     display: block;
-    margin-bottom: $spacing-half / 2;
-    font-weight: 600;
+    margin-bottom: vr(.25);
+    @include fw('primary', 700);
 }
 
 input,
 select,
 textarea {
     display: block;
-    color: $form-text-color;
-    font-family: $font-text;
-    font-size: $form-font-size;
+    color: yak-color("primary");
+    @include ff('primary');
+    @include typi('init');
 }
 
 #{$all-text-inputs} {
     appearance: none;
     width: 100%;
-    margin-bottom: $spacing-half;
-    padding: $spacing / 4;
-    background-color: $form-background-color;
-    border: $form-border;
-    border-radius: $form-border-radius;
-    box-shadow: $form-box-shadow;
+    //margin-bottom: vr(1);
+    padding: vr(.375) vr(.25);
+    background-color: yak-color('default', 'lightest');
+    @include yak-border(yak-color('default', 'lightest'));
+    border-radius: 0;
+    box-shadow: none;
     box-sizing: border-box;
-    transition: border-color $base-duration $base-timing;
-
-    &:hover {
-        border-color: shade($form-border-color, 20%);
-    }
+    transition: border-color $transition-duration $transition-timing;
 
     &:focus {
-        border-color: $form-border-color-focus;
-        box-shadow: $form-box-shadow-focus;
+        box-shadow: none;
         outline: none;
     }
 
     &:disabled {
-        background-color: shade($form-background-color, 2%);
+        background-color: yak-color('default', 'lighter');
         cursor: not-allowed;
 
         &:hover {
-            border: $form-border;
+            //border: $form-border;
         }
     }
 
     &::placeholder {
-        color: $form-placeholder-color;
+        color: yak-color('default', 'dark');
+        @include fw('primary', 500);
     }
 }
 
@@ -71,21 +67,21 @@ textarea {
 [type="checkbox"],
 [type="radio"] {
     display: inline;
-    margin-right: $spacing-half / 2;
+    margin-right: vr(.25);
 }
 
 [type="file"] {
-    margin-bottom: $spacing-half;
+    margin-bottom: vr(.5);
     width: 100%;
 }
 
 [type="submit"] {
-    padding: $spacing / 4;
-    font-family: $font-text;
-    font-size: $form-font-size;
+    padding: vr(.25);
+    @include ff(primary);
+    @include typi(init);
 }
 
 select {
-    margin-bottom: $spacing-half;
+    margin-bottom: vr(.5);
     width: 100%;
 }

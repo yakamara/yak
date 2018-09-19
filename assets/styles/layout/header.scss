@@ -1,8 +1,6 @@
 @charset "utf-8";
 
-.header {
-    padding: $gutter-half-width;
-    &-content {
-        @include outer-container();
-    }
+
+.global-header {
+    @include yak-outer-container();
 }

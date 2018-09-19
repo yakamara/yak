@@ -1,41 +1,5 @@
 @charset "utf-8";
 
-.footer {
-    background-color: $color-a-darker;
-    color: $color-a-lighter;
-
-    a[href^="tel"] {
-        color: #fff;
-        text-decoration: none;
-    }
-
-    &-content {
-        @include outer-container();
-        padding-top: $spacing-double;
-        padding-bottom: $spacing-double;
-    }
-
-    &-logo,
-    &-contact {
-        text-align: center;
-    }
-
-    &-contact {
-        h3 {
-            margin: 0;
-            color: $brand-color;
-        }
-    }
-
-    @include mq($until: watson) {
-        &-contact {
-            margin-top: $spacing-double;
-        }
-    }
-    @include mq($from: watson) {
-        &-logo,
-        &-contact {
-            @include span-columns(6 of 12);
-        }
-    }
+.global-footer {
+    margin-top: vr(2.5);
 }
