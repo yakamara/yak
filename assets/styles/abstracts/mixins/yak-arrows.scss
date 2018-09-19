@@ -1,15 +1,6 @@
 @charset "utf-8";
 
-/**
- * This file is part of the Application package.
- *
- * @author (c) Yakamara Media GmbH & Co. KG
- * @author Thomas Blum <thomas.blum@yakamara.de>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-@mixin arrow-center-bottom($width: 10px, $color: "", $border-width: 0, $border-color: "") {
+@mixin yak-arrow-center-bottom($width: 10px, $color: "", $border-width: 0, $border-color: "") {
     position: relative;
 
     @if ($border-width > 0) {
@@ -60,7 +51,7 @@
 }
 
 
-@mixin arrow-left-bottom($width: 10px, $color: "", $border-width: 0, $border-color: "") {
+@mixin yak-arrow-left-bottom($width: 10px, $color: "", $border-width: 0, $border-color: "") {
     position: relative;
 
     @if ($border-width > 0) {
@@ -111,7 +102,7 @@
 }
 
 
-@mixin arrow-width($widths, $border: false, $breakpoints: $mq-breakpoints) {
+@mixin yak-arrow-width($widths, $border: false, $breakpoints: $mq-breakpoints) {
     $newBreakpoints: ();
     $listOfBreakpoints: map-keys($breakpoints);
     @each $breakpoint in $listOfBreakpoints {
