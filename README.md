@@ -67,7 +67,7 @@
         - styles/
         - svgs/
     - /bin/
-    - /gulfile.js/
+    - /gulpfile.js/
         - assets/
         - tasks/
     - /public/
