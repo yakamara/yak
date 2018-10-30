@@ -5,6 +5,11 @@
 - [Vorbereitung für ein bestehendes Projekt](#anker-bestehendes-projekt)
 - [Vorbereitung für ein neues Projekt](#anker-neues-projekt)
 
+## Vorraussetzungen
+
+- eine `bash` wird vorrausgesetzt
+- [`yarn` muss installiert sein](https://yarnpkg.com)
+
 <a name="anker-neues-projek"></a>
 ## Vorbereitung für ein neues Projekt
 
