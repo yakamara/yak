@@ -288,6 +288,7 @@ $typi: map-merge($_font-sizes, $_other-font-sizes);
 
 //== Yak Variables
 //====================================================
+$yak-caret-width: .3em;
 $yak-colors: $_colors;
 $yak-color-contrast-dark: #212121 !default;
 $yak-color-contrast-light: #FFF !default;
@@ -297,5 +298,3 @@ $yak-opacities: (
     light: 0.8,
     dark: 0.4,
 );
-
-

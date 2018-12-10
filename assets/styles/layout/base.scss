@@ -5,8 +5,10 @@ html, body {
 }
 
 html {
-    background-color: yak-color('default', 'lightest');
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
+
 body {
     margin: 0;
     transition: .2s ease-out;

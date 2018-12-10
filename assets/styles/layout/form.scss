@@ -222,7 +222,7 @@
     .form-notice {
         display: block;
         margin-bottom: vr(.25);
-        @include fw(primary, bold);
+        @include fw('primary', 700);
     }
     .help-block {
         margin-top: vr(-1);
@@ -256,6 +256,7 @@
         .control-label {
             //color: color(secondary);
         }
+        &.form-captcha .input-group-addon,
         .form-control {
             @include yak-border-bottom(yak-color('primary'), .2em);
         }

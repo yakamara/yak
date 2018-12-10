@@ -66,7 +66,7 @@
     @include yak-gutter($grids);
 }
 
-@mixin yak-container() {
+@mixin yak-container($grids: $grids) {
     display: flex;
     flex-wrap: wrap;
     margin-left: map-get(nth(map-values($grids), 1), 'gutter') / -2;
@@ -82,7 +82,7 @@
     }
 }
 
-@mixin yak-column($columns) {
+@mixin yak-column($columns, $grids: $grids) {
     $size: $columns / $grid-columns;
     @if length($columns) > 1 {
         $size: nth($columns, 1) / _neat-parse-columns($columns);
@@ -102,7 +102,7 @@
     max-width: percentage($size);
     min-height: 1px;
 
-    @include yak-gutter();
+    @include yak-gutter($grids);
 }
 
 
@@ -182,4 +182,25 @@
     flex-basis: 0;
     flex-grow: 1;
     max-width: 100%;
+}
+
+
+@mixin yak-create-grid($gridAll) {
+    @each $columns, $grids in $gridAll {
+        @include mq($from: sm) {
+            [data-case-grid] {
+                > * {
+                    margin-top: vr(1);
+                }
+            }
+
+            @each $gridName, $grid in $grids {
+                [data-case-grid="#{$gridName}"] {
+                    > *:nth-child(-n+#{$columns}) {
+                        margin-top: 0;
+                    }
+                }
+            }
+        }
+    }
 }

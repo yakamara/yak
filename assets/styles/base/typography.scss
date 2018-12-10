@@ -4,8 +4,8 @@
 @include typi-init();
 
 html {
-    @include ff(primary);
-    @include fw(primary, normal);
+    @include ff('primary');
+    @include fw('primary', 400);
 }
 
 body {
@@ -22,7 +22,7 @@ body:active {
 }
 
 b, strong {
-    @include fw('primary', 500);
+    @include fw('primary', 700);
 }
 
 address {
@@ -55,8 +55,8 @@ blockquote {
 
 
 .align-center {
-    text-align: center;
+    text-align: center !important;
 }
 .align-right {
-    text-align: right;
+    text-align: right !important;
 }
