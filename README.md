@@ -8,7 +8,7 @@
 <a name="anker-neues-projek"></a>
 ## Vorbereitung für ein neues Projekt
 
-1. Ordner für das Projekt lokal anlegen (Bsp. `~/Sites/yak.project`)
+1. Ordner für das Projekt lokal anlegen (Bsp. `~/Sites/localhost.project`)
 
 1. Wenn nicht bereits geschehen, ein privates Github Repo erstellen (Readme mit anlegen lassen) via Git Client in Projektordner klonen
 
@@ -17,21 +17,21 @@
 1. `hosts` Datei öffnen und ergänzen
 
     ```
-    127.0.0.1   project.yak
-    127.0.0.1   www.project.yak
+    127.0.0.1   project.localhost
+    127.0.0.1   www.project.localhost
     ```
 
-1. `httpd-vhosts.conf` öffnen und ergänzen (`USERDIR` und ggf. `yak.project` anpassen)
+1. `httpd-vhosts.conf` öffnen und ergänzen (`USERDIR` und ggf. `localhost.project` anpassen)
  
     ```
     <VirtualHost *:80>
-        ServerName project.yak
-        ServerAlias www. project.yak
-        DocumentRoot "/Users/USERDIR/Sites/yak.project/public"
-            ErrorLog "/Users/USERDIR/Sites/Logs/yak.project-error_log"
-           CustomLog "/Users/USERDIR/Sites/Logs/yak.project-access_log" common
+        ServerName project.localhost
+        ServerAlias www. project.localhost
+        DocumentRoot "/Users/USERDIR/Sites/localhost.project/public"
+            ErrorLog "/Users/USERDIR/Sites/Logs/localhost.project-error_log"
+           CustomLog "/Users/USERDIR/Sites/Logs/localhost.project-access_log" common
     
-        <Directory "/Users/USERDIR/Sites/yak.project/public">
+        <Directory "/Users/USERDIR/Sites/localhost.project/public">
             Options Indexes FollowSymLinks
             AllowOverride All
             Order allow,deny
@@ -49,7 +49,7 @@
 
 1. Terminal öffnen
 
-    Ausführen  `$ cd ~/Sites/yak.project`
+    Ausführen  `$ cd ~/Sites/localhost.project`
 
 
 3. REDAXO wird mit Ausführung des nächsten Befehles automatisch installiert und eine vorhandene Instanz wird überschrieben. Wenn das nicht gewünscht ist, die Zeilen im `setup/presetup` entsprechend auskommentieren.
@@ -91,7 +91,7 @@
         - data/
     ```
 
-4. REDAXO Setup via Browser und Url `http://project.yak/redaxo` starten
+4. REDAXO Setup via Browser und Url `http://project.localhost/redaxo` starten
 
 ### weitere Einstellungen und Vorraussetzungen
 
@@ -102,7 +102,7 @@
 
 #### Deployment
 
-_alle Befehle gehen direkt vom Projektordner aus._  `~/Sites/yak.project`
+_alle Befehle gehen direkt vom Projektordner aus._  `~/Sites/localhost.project`
 
 - Datenbankdump der lokalen Instanz erstellen und auf Live via Adminer oder Datenbanktool einspielen
 - `deploy.php` in der lokalen Instanz für Server anpassen
@@ -256,7 +256,7 @@ Beim Befehl `$ bin/console `ydeploy`:diff` werden jetzt die obigen Tabellen mit 
 
 1. Via E-Mail wurde eine Einladung von Github für das Repo versendet. Dort den Link anklicken und man ist für das Repo freigeschalten. 
 
-1. Ordner für das Projekt lokal anlegen (Bsp. `~/Sites/yak.project`)
+1. Ordner für das Projekt lokal anlegen (Bsp. `~/Sites/localhost.project`)
 
 1. Github Repo via Git Client in Projektordner klonen
 
@@ -265,24 +265,24 @@ Beim Befehl `$ bin/console `ydeploy`:diff` werden jetzt die obigen Tabellen mit 
 1. Datenbankdump von der Production/Stage/Live Umgebung holen und lokal einspielen
 > Falls der Dump via Backup-AddOn geholt wird, dann die rex_user Tabelle nicht vergessen
 
-6. `hosts` Datei öffnen und ergänzen
+1. `hosts` Datei öffnen und ergänzen
 
     ```
-    127.0.0.1   project.yak
-    127.0.0.1   www.project.yak
+    127.0.0.1   project.localhost
+    127.0.0.1   www.project.localhost
     ```
 
-1. `httpd-vhosts.conf` öffnen und ergänzen (`USERDIR` und ggf. `yak.project` anpassen)
+1. `httpd-vhosts.conf` öffnen und ergänzen (`USERDIR` und ggf. `localhost.project` anpassen)
  
     ```
     <VirtualHost *:80>
-        ServerName project.yak
-        ServerAlias www. project.yak
-        DocumentRoot "/Users/USERDIR/Sites/yak.project/public"
-            ErrorLog "/Users/USERDIR/Sites/Logs/yak.project-error_log"
-           CustomLog "/Users/USERDIR/Sites/Logs/yak.project-access_log" common
+        ServerName project.localhost
+        ServerAlias www. project.localhost
+        DocumentRoot "/Users/USERDIR/Sites/localhost.project/public"
+            ErrorLog "/Users/USERDIR/Sites/Logs/localhost.project-error_log"
+           CustomLog "/Users/USERDIR/Sites/Logs/localhost.project-access_log" common
     
-        <Directory "/Users/USERDIR/Sites/yak.project/public">
+        <Directory "/Users/USERDIR/Sites/localhost.project/public">
             Options Indexes FollowSymLinks
             AllowOverride All
             Order allow,deny
@@ -296,7 +296,7 @@ Beim Befehl `$ bin/console `ydeploy`:diff` werden jetzt die obigen Tabellen mit 
 1. `/.env` Datei öffnen und anpassen
     
     ```
-    APP_HOST=project.yak
+    APP_HOST=project.localhost
     ```
 
 
@@ -333,7 +333,7 @@ Host name: prod
 
 **Ursache**
 
-Bei DomainFactory wird in der KOnsole default PHP 4 genutzt
+Bei DomainFactory wird in der Konsole default PHP 4 genutzt
 
 **Lösung**
 
