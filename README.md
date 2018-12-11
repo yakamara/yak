@@ -2,10 +2,12 @@
 
 - [Allgemeines Arbeiten](#anker-allgemeines-arbeiten)
 - [Bekannte Probleme](#anker-bekannte-probleme)
+    - [Deployen in einen DomainFactory Account](#anker-bekannte-probleme--deployen-domainfactory-account)
+    - [Import von sql-Dump mit date (0000-00-00) und datetime (0000-00-00 00:00:00) Werten](#anker-bekannte-probleme--sql-dump)
 - [Vorbereitung für ein bestehendes Projekt](#anker-bestehendes-projekt)
 - [Vorbereitung für ein neues Projekt](#anker-neues-projekt)
 
-<a name="anker-neues-projek"></a>
+<a name="anker-neues-projekt"></a>
 ## Vorbereitung für ein neues Projekt
 
 1. Ordner für das Projekt lokal anlegen (Bsp. `~/Sites/localhost.project`)
@@ -251,7 +253,7 @@ if (\rex::isBackend() && \rex_addon::get('ydeploy')->isAvailable()) {
 Beim Befehl `$ bin/console `ydeploy`:diff` werden jetzt die obigen Tabellen mit berücksichtigt.
 
 
-<a name="anker-bestehendes-projek"></a>
+<a name="anker-bestehendes-projekt"></a>
 ## Vorbereitung für ein bestehendes Projekt
 
 1. Via E-Mail wurde eine Einladung von Github für das Repo versendet. Dort den Link anklicken und man ist für das Repo freigeschalten. 
@@ -320,6 +322,7 @@ Beim Befehl `$ bin/console `ydeploy`:diff` werden jetzt die obigen Tabellen mit 
 <a name="anker-bekannte-probleme"></a>
 ## Bekannte Probleme
 
+<a name="anker-bekannte-probleme--deployen-domainfactory-account"></a>
 ### Deployen in einen DomainFactory Account
 
 **Fehlermeldung in der Konsole**
@@ -356,5 +359,16 @@ Symlink auf PHP 71 setzen
 1. prüfen mit: `php -v`
 
 
+<a name="anker-bekannte-probleme--sql-dump"></a>
+### Import von sql-Dump mit date (0000-00-00) und datetime (0000-00-00 00:00:00) Werten
 
+1. `SHOW variables LIKE 'sql_mode';`
+    Angezeigten Wert speichern
+    Beispiel
+    > ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+
+1. `SET sql_mode = '';`
+1. Dump importieren
+1. `SET sql_mode = 'VALUE';`
+    VALUE = zuvor gespeicherter Wert
 
