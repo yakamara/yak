@@ -28,6 +28,9 @@
     "engines": {
         "node": ">=6.9"
     },
+    "scripts": {
+        "dev": "gulp"
+    },
     "browserslist": [
         "last 2 versions"
     ]

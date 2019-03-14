@@ -43,18 +43,22 @@
         </Directory>
     </VirtualHost>
     ```
+1. /.env Datei öffnen und anpassen
+   
+   ```APP_HOST=project.localhost```
 
 
 ### Konsole
 
 1. Apache neu starten
 
+1. yarn installieren `$ npm i -g yarn`
+
 1. Terminal öffnen
 
     Ausführen  `$ cd ~/Sites/localhost.project`
-
-
-3. REDAXO wird mit Ausführung des nächsten Befehles automatisch installiert und eine vorhandene Instanz wird überschrieben. Wenn das nicht gewünscht ist, die Zeilen im `setup/presetup` entsprechend auskommentieren.
+    
+1. REDAXO wird mit Ausführung des nächsten Befehles automatisch installiert und eine vorhandene Instanz wird überschrieben. Wenn das nicht gewünscht ist, die Zeilen im `setup/presetup` entsprechend auskommentieren.
 
     Ausführen `$ setup/presetup`
 
@@ -123,6 +127,9 @@ _alle Befehle gehen direkt vom Projektordner aus._  `~/Sites/localhost.project`
 - Ausführen `$ dep deploy` (diesmal sollte kein Fehler mehr kommen)
 - Domain der Live-Instanz auf `current/public` zeigen lassen (Der Pfad muss zumeist per Hand notiert werden, da es ein Symlink ist)
 
+#### Development
+
+1. `$ npm run dev`
 
 #### Einstellungen Developer
 
