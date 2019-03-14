@@ -47,12 +47,9 @@
    
    ```APP_HOST=project.localhost```
 
-
 ### Konsole
 
 1. Apache neu starten
-
-1. yarn installieren `$ npm i -g yarn`
 
 1. Terminal öffnen
 
@@ -101,6 +98,8 @@
 
 ### weitere Einstellungen und Vorraussetzungen
 
+* Yarn installieren [yarnpkg.com](https://yarnpkg.com/en/docs/install#mac-stable)
+* lokale Entwicklungsumgebung [Anleitung](https://getgrav.org/blog/macos-mojave-apache-multiple-php-versions) (macOS Mojave)
 * developer AddOn installieren, falls nicht über das Setup bereits getan
 * ydeploy AddOn installieren, falls nicht über das Setup bereits getan
 
