@@ -128,7 +128,7 @@ _alle Befehle gehen direkt vom Projektordner aus._  `~/Sites/localhost.project`
 
 #### Development
 
-1. `$ npm run dev`
+1. `$ npm run dev` oder `$ gulp`
 
 #### Einstellungen Developer
 
