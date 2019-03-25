@@ -1,20 +1,17 @@
 /.build
 /.env
 /node_modules/
+access_log
+error_log
 
-/public/assets/fonts
-/public/assets/images
-/public/assets/scripts
-/public/assets/styles
-/public/assets/svgs
-
-/public/media/*
+/public/media/
 !/public/media/.redaxo
+/public/resources/css/*.css
 
 /var/cache/*
 !/var/cache/.*
 
-/var/data/addons/*/*
+/var/data/addons/*
 !/var/data/addons/mblock/*
 !/var/data/addons/mform/*
 !/var/data/addons/ydeploy/*

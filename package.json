@@ -1,37 +1,21 @@
 {
     "private": true,
     "name": "yakname",
-    "dependencies": {
-        "autosize": "^4.0.0",
-        "babel-polyfill": "^6.23.0",
-        "bourbon": "^5.0.1",
-        "bourbon-neat": "^3.0.0",
-        "imagesloaded": "^4.1.4",
-        "jquery": "^3.2.1",
-        "jquery.inputmask": "^3.3.1",
-        "masonry-plus": "^1.1.0",
-        "modularscale-sass": "2",
-        "moment": "^2.18.1",
-        "normalize.css": "^7.0.0",
-        "owl.carousel": "github:owlcarousel2/OwlCarousel2",
-        "sass-mq": "^5.0.0",
-        "scrollme": "github:tobaco/scrollme",
-        "select2": "^4.0.3",
-        "typi": "^3.2.0",
-        "waypoints": "^4.0.1"
-    },
-    "devDependencies": {
-        "@yakamara/gulp-tasks": "^1.1.0",
-        "dotenv": "^6.0.0",
-        "gulp": "^4.0.0"
-    },
+    "main": "gulpfile.js",
     "engines": {
         "node": ">=6.9"
     },
     "scripts": {
-        "dev": "gulp"
+        "dev": "gulp",
+        "build": "gulp build"
     },
     "browserslist": [
         "last 2 versions"
-    ]
+    ],
+    "devDependencies": {
+        "gulp": "^4.0.0",
+        "gulp-concat": "^2.6.1",
+        "gulp-sass": "^4.0.2",
+        "gulp-uglify": "^3.0.2"
+    }
 }
