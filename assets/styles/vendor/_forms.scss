@@ -1,0 +1,128 @@
+.xform p {
+	padding-bottom: 10px;
+}
+
+div.alert {
+	padding: 15px 30px;
+	margin-bottom: 20px;
+	border-radius: 4px;
+}
+div.alert span {
+	margin-right: 15px;
+}
+div.alert-danger {
+	border: 1px solid #b8c3cd;
+	background-color: #f2dede;
+	color: #a94442;
+}
+.formcom_auth_form_info {
+	list-style-type: none;
+	padding-left: 0;
+	margin-bottom: 50px;
+}
+
+.alert > p {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+
+.xform form {
+	margin-bottom: 20px;
+	background: #DFE6E7;
+	padding: 50px 30px 20px;
+	margin-bottom: 50px;
+}
+.xform label {
+	display: block;
+}
+form.hide-label label {
+	display: none;
+}
+.xform hr {
+    border-top: 1px solid #b8c3cd;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+.xform input[type=text],
+.xform input[type=password],
+.xform textarea {
+	display: block;
+	width: 100%;
+	padding: 9px 20px;
+	margin-bottom: 10px;
+	font-size: 14px;
+	color: #37434f;
+	border: solid 1px #dfe6e7;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 8px;
+	border-radius: 6px;
+	box-shadow: none;
+	background: #FFFFFF;
+	height: auto;
+}
+.xform input[type=text]:hover,
+.xform textarea:hover {
+    border-color: #a8aeb5;
+}
+.xform input[type=text]:focus,
+.xform textarea:focus {
+    border-color: #37434f;
+    outline: none;
+    box-shadow: none;
+}
+
+input[type="radio"], input[type="checkbox"] {
+	position: relative;
+	top: 12px;
+}
+
+.xform .form-captcha img {
+    height: auto;
+    max-width: none;
+    width: auto;
+}
+.xform .form-captcha .form-control {
+
+}
+.xform .form-captcha .input-group-addon {
+    background-color: #000;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.xform .form-captcha a {
+	padding-top: 11px;
+    padding-bottom: 11px;
+}
+.xform .btn,
+.xform input[type=submit] {
+	background: #b2c85f;
+	border-color: #b2c85f;
+}
+.xform input[type=submit] {
+	display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.xform .btn:hover,
+.xform input[type=submit]:hover {
+	background: #889655;
+}
+

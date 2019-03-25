@@ -15,21 +15,25 @@ Find in depth setup and deploy information on [yak base repo](https://github.com
 
 1. go through default redaxo setup in your browser
 
+1. update core in Back End
+
 1. install [demo_base](https://github.com/FriendsOfREDAXO/demo_base) AddOn, can get uninstalled afterwards
+
+1. run `npm install`
 
 ### Further requirements
 
-* have npm installed
+* node and npm installed
 * developer AddOn installed (should already in with setup)
 * ydeploy AddOn installed (should already in with setup)
 
 ## Development
 
-Now to really use our SCSS and JS gulp workflow we need to change the resources
+Now to really use your SCSS and JS gulp workflow. You need to change the binded resources.
 
 1. in `src/templates/00 . Header [4]/template.php` replace `redaxo-demo.css` with `style.css`. You can remove the original redaxo-demo.css.
 
-1.  in `src/templates/03 . TEMPLATE [3]/template.php` replace `redaxo-demo.js` with `main.min.js`. You can remove the original redaxo-demo.js
+1.  in `src/templates/03 . TEMPLATE [3]/template.php` replace all JS integrations and set the created `js/main.min.js` as single JS resource. You can remove the original `/resources/js` directory.
  
 1. `npm run dev`
 

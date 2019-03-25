@@ -6,11 +6,11 @@ const gulp 	= require('gulp'),
 const paths = {
     styles: {
         src: 'assets/styles/*.scss',
-        dest: 'public/resources/css/'
+        dest: 'public/css/'
     },
     scripts: {
         src: 'assets/scripts/*.js',
-        dest: 'public/resources/js/'
+        dest: 'public/js/'
     }
 };
 
