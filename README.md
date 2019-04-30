@@ -109,7 +109,7 @@ _alle Befehle gehen direkt vom Projektordner aus._  `~/Sites/localhost.project`
 - Datenbankdump der lokalen Instanz erstellen und auf Live via Adminer oder Datenbanktool einspielen
 - `deploy.php` in der lokalen Instanz für Server anpassen
 - Ausführen `$ bin/console ydeploy:diff`
-- lokalen Stand auf Github pullen
+- lokalen Stand auf Github pushen
 - Ausführen `$ dep deploy` (hier kommt es absichtlich noch zu einem Fehler, aber die Grundstruktur ist schon mal auf dem Server)
 
 **auf dem Live Server via FTP Client**
