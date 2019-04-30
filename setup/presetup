@@ -64,7 +64,7 @@ mv public/redaxo/src/addons src
 mv public/redaxo/src/core src
 
 cp setup/addon.project.boot.php src/addons/project/boot.php
-cp setup/console bin/console
+cp -p setup/console bin/console
 cp setup/deploy.php deploy.php
 cp setup/index.backend.php public/redaxo/index.php
 cp setup/index.frontend.php public/index.php
@@ -81,10 +81,10 @@ Load REDAXO AddOns
 ${CNO}"
 
 # structure_tweaks
-read -p "Load FriendsOfREDAXO addons [adminer bloecks developer focuspoint mblock multiupload quick_navigation redactor2]:" repos
+read -p "Load FriendsOfREDAXO addons [adminer bloecks developer focuspoint mblock quick_navigation redactor2]:" repos
 
 if [ -z "$repos" ]; then
-    repos=("adminer" "bloecks" "developer" "focuspoint" "mblock" "multiupload" "quick_navigation" "redactor2")
+    repos=("adminer" "bloecks" "developer" "focuspoint" "mblock" "quick_navigation" "redactor2")
 fi
 
 for repo in ${repos[@]}
