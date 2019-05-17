@@ -1,7 +1,7 @@
 const gulp = require('gulp');
 const init = require('@yakamara/gulp-tasks').require('init');
 
-require('dotenv').load();
+require('dotenv').config();
 
 require('./config');
 
