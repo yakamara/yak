@@ -23,9 +23,9 @@ Reading config file
 ${CNO}"
 
 # rename env
-if [ -f .env.dist ]; then
-    cp .env.dist .env
-    echo -e "${CGREEN}.env.dist was copied to .env${CNO}"
+if [ -f .env ]; then
+    cp .env .env.local
+    echo -e "${CGREEN}.env was copied to .env.local${CNO}"
 fi
 
 

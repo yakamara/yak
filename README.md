@@ -295,7 +295,7 @@ Beim Befehl `$ bin/console `ydeploy`:diff` werden jetzt die obigen Tabellen mit 
     </VirtualHost>
     ```
     
-1. `/.env` Datei öffnen und anpassen
+1. `/.env.local` Datei öffnen und anpassen
     
     ```
     APP_HOST=project.localhost

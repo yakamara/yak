@@ -1,5 +1,5 @@
 /.build
-/.env
+/.env.local
 /node_modules/
 
 /public/assets/fonts
