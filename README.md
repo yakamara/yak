@@ -358,8 +358,10 @@ Symlink auf PHP 71 setzen
 
 1. prüfen mit: `php -v`
 
-Es kann vorkommen, dass die .bashrc nicht beim login aufgerufen wird. Bei Plesk kann man es z.B. lösen, indem man eine ~/.profile ergänzt und dort die .bashrc aufruft. Wenn die .profile bereits existiert, den folgenden Aufruf am Ende ergänzen
-```source ~/.bashrc```
+
+Es kann vorkommen, dass die .bashrc nicht beim login aufgerufen wird. Bei Plesk kann man es z.B. lösen, indem man eine `~/.profile` ergänzt und dort die `.bashrc` aufruft. Wenn die `.profile` bereits existiert, den folgenden Aufruf am Ende ergänzen `source ~/.bashrc`
+
+oder im Deployer den bin/php Pfad direkt setzen `->set('bin/php', '/opt/plesk/php/7.3/bin/php')`
 
 <a name="anker-bekannte-probleme--sql-dump"></a>
 ### Import von sql-Dump mit date (0000-00-00) und datetime (0000-00-00 00:00:00) Werten
