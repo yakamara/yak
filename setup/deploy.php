@@ -25,4 +25,14 @@ set('data_dir', 'var/data');
 set('src_dir', 'src');
 set('bin/console', 'bin/console');
 
-add('clear_paths', ['assets']);
+add('shared_dirs', [
+    'var/log',
+]);
+
+add('writable_dirs', [
+    'var/log',
+]);
+
+add('clear_paths', [
+    'assets',
+]);

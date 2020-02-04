@@ -19,3 +19,5 @@
 !/var/data/addons/mform/*
 !/var/data/addons/ydeploy/*
 /var/data/core/*
+
+/var/log/
