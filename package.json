@@ -28,6 +28,6 @@
         "node": ">=6.9"
     },
     "browserslist": [
-        "last 2 versions"
+        "defaults"
     ]
 }
