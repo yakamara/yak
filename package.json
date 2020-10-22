@@ -20,7 +20,7 @@
         "waypoints": "^4.0.1"
     },
     "devDependencies": {
-        "@yakamara/gulp-tasks": "^1.11.0",
+        "@yakamara/gulp-tasks": "^1.13.0",
         "dotenv": "^8.2.0",
         "gulp": "^4.0.0"
     },
