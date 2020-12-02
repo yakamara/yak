@@ -3,6 +3,7 @@
 - [Allgemeines Arbeiten](#anker-allgemeines-arbeiten)
 - [Bekannte Probleme](#anker-bekannte-probleme)
     - [Deployen in einen DomainFactory Account/Plesk Account](#anker-bekannte-probleme--deployen-domainfactory-account)
+    - [Deployen bei All-Inkl](#anker-bekannte-probleme--deployen-all-inkl)
     - [Import von sql-Dump mit date (0000-00-00) und datetime (0000-00-00 00:00:00) Werten](#anker-bekannte-probleme--sql-dump)
 - [Vorbereitung für ein bestehendes Projekt](#anker-bestehendes-projekt)
 - [Vorbereitung für ein neues Projekt](#anker-neues-projekt)
@@ -362,6 +363,17 @@ Symlink auf PHP 71 setzen
 Es kann vorkommen, dass die .bashrc nicht beim login aufgerufen wird. Bei Plesk kann man es z.B. lösen, indem man eine `~/.profile` ergänzt und dort die `.bashrc` aufruft. Wenn die `.profile` bereits existiert, den folgenden Aufruf am Ende ergänzen `source ~/.bashrc`
 
 oder im Deployer den bin/php Pfad direkt setzen `->set('bin/php', '/opt/plesk/php/7.3/bin/php')`
+
+<a name="anker-bekannte-probleme--deployen-all-inkl"></a>
+### Deployen bei All-Inkl
+PHP-CLI und `writeable_mode` müssen in der **deploy.php** gesetzt werden:
+```
+host(NAME)
+->set('writable_mode', 'chmod')
+->set('bin/php', '/usr/bin/php74')
+// ...
+;
+```
 
 <a name="anker-bekannte-probleme--sql-dump"></a>
 ### Import von sql-Dump mit date (0000-00-00) und datetime (0000-00-00 00:00:00) Werten
