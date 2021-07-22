@@ -1,6 +1,9 @@
 import watching from '../util/watching';
 import $ from 'jquery';
-import 'select2';
+import select2 from 'select2';
+
+// https://github.com/select2/select2/issues/5053#issuecomment-333816006
+select2(window, $);
 
 window.jQuery = $;
 
@@ -28,5 +31,9 @@ watching('select', {
         }
 
         $element.select2(options);
+
+        this.$element.on('select2:open', event => {
+            document.querySelector('.select2-container--open input.select2-search__field').focus();
+        });
     }
 });

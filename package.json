@@ -2,30 +2,30 @@
     "private": true,
     "name": "yakname",
     "dependencies": {
-        "autosize": "^4.0.0",
+        "autosize": "^5.0.1",
         "bourbon": "^6.0.0",
         "bourbon-neat": "^4.0.0",
         "imagesloaded": "^4.1.4",
-        "jquery": "^3.5.1",
-        "jquery.inputmask": "^3.3.1",
+        "inputmask": "^3.3.8",
+        "jquery": "^3.6.0",
         "masonry-plus": "^1.1.0",
         "modularscale-sass": "3.0.10",
-        "moment": "^2.18.1",
+        "moment": "^2.29.1",
         "normalize.css": "^8.0.1",
         "owl.carousel": "github:owlcarousel2/OwlCarousel2",
         "sass-mq": "^5.0.1",
         "scrollme": "github:tobaco/scrollme",
-        "select2": "^4.0.12",
+        "select2": "^4.0.13",
         "typi": "^3.2.0",
         "waypoints": "^4.0.1"
     },
     "devDependencies": {
-        "@yakamara/gulp-tasks": "^1.16.0",
-        "dotenv": "^8.2.0",
-        "gulp": "^4.0.0"
+        "@yakamara/gulp-tasks": "^1.17.0",
+        "dotenv": "^10.0.0",
+        "gulp": "^4.0.2"
     },
     "engines": {
-        "node": ">=6.9"
+        "node": ">=10"
     },
     "browserslist": [
         "defaults"
