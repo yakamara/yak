@@ -62,6 +62,8 @@ mv public/redaxo/cache var
 mv public/redaxo/data var
 mv public/redaxo/src/addons src
 mv public/redaxo/src/core src
+mv public/LICENSE.md LICENSE.md
+rm -f public/README.md public/README.de.md
 
 cp setup/addon.project.boot.php src/addons/project/boot.php
 cp -p setup/console bin/console
