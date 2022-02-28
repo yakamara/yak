@@ -50,9 +50,11 @@
 
 1. Apache neu starten
 
-1. Terminal öffnen
+2. Terminal öffnen
 
     Ausführen  `$ cd ~/Sites/localhost.project`
+    
+    ggf. unzip installieren `$ sudo apt-get install zip unzip` https://simplernerd.com/wsl2-zip-unzip-files/
 
 
 3. REDAXO wird mit Ausführung des nächsten Befehles automatisch installiert und eine vorhandene Instanz wird überschrieben. Wenn das nicht gewünscht ist, die Zeilen im `setup/presetup` entsprechend auskommentieren.
