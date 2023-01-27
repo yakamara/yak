@@ -1,9 +1,13 @@
 import watching from '../util/watching';
 import $ from 'jquery';
 import 'bootstrap-daterangepicker';
-import 'jquery.inputmask';
+import 'inputmask';
 import moment from 'moment';
 import moment_de from "moment/locale/de";
+
+window.jQuery = $;
+
+require('inputmask/dist/jquery.inputmask.bundle');
 
 moment.locale('de', moment_de);
 

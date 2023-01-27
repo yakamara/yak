@@ -24,6 +24,11 @@ class app_path_provider extends rex_path_default_provider
         return $this->base('var/data/' . $file);
     }
 
+    public function log(string $file): string
+    {
+        return $this->base('var/log/' . $file);
+    }
+
     public function cache($file)
     {
         return $this->base('var/cache/' . $file);

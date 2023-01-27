@@ -1,5 +1,5 @@
 /.build
-/.env
+/.env.local
 /node_modules/
 
 /public/assets/fonts
@@ -19,3 +19,5 @@
 !/var/data/addons/mform/*
 !/var/data/addons/ydeploy/*
 /var/data/core/*
+
+/var/log/

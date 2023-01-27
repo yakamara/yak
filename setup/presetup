@@ -23,9 +23,9 @@ Reading config file
 ${CNO}"
 
 # rename env
-if [ -f .env.dist ]; then
-    cp .env.dist .env
-    echo -e "${CGREEN}.env.dist was copied to .env${CNO}"
+if [ -f .env ]; then
+    cp .env .env.local
+    echo -e "${CGREEN}.env was copied to .env.local${CNO}"
 fi
 
 
@@ -62,9 +62,11 @@ mv public/redaxo/cache var
 mv public/redaxo/data var
 mv public/redaxo/src/addons src
 mv public/redaxo/src/core src
+mv public/LICENSE.md LICENSE.md
+rm -f public/README.md public/README.de.md
 
 cp setup/addon.project.boot.php src/addons/project/boot.php
-cp setup/console bin/console
+cp -p setup/console bin/console
 cp setup/deploy.php deploy.php
 cp setup/index.backend.php public/redaxo/index.php
 cp setup/index.frontend.php public/index.php
@@ -81,10 +83,10 @@ Load REDAXO AddOns
 ${CNO}"
 
 # structure_tweaks
-read -p "Load FriendsOfREDAXO addons [adminer bloecks developer focuspoint mblock multiupload quick_navigation redactor2]:" repos
+read -p "Load FriendsOfREDAXO addons [adminer bloecks developer focuspoint mblock quick_navigation redactor2]:" repos
 
 if [ -z "$repos" ]; then
-    repos=("adminer" "bloecks" "developer" "focuspoint" "mblock" "multiupload" "quick_navigation" "redactor2")
+    repos=("adminer" "bloecks" "developer" "focuspoint" "mblock" "quick_navigation" "redactor2")
 fi
 
 for repo in ${repos[@]}

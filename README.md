@@ -2,6 +2,9 @@
 
 - [Allgemeines Arbeiten](#anker-allgemeines-arbeiten)
 - [Bekannte Probleme](#anker-bekannte-probleme)
+    - [Deployen in einen DomainFactory Account/Plesk Account](#anker-bekannte-probleme--deployen-domainfactory-account)
+    - [Deployen bei All-Inkl](#anker-bekannte-probleme--deployen-all-inkl)
+    - [Import von sql-Dump mit date (0000-00-00) und datetime (0000-00-00 00:00:00) Werten](#anker-bekannte-probleme--sql-dump)
 - [Vorbereitung für ein bestehendes Projekt](#anker-bestehendes-projekt)
 - [Vorbereitung für ein neues Projekt](#anker-neues-projekt)
 
@@ -10,10 +13,10 @@
 - eine `bash` wird vorrausgesetzt
 - [`yarn` muss installiert sein](https://yarnpkg.com)
 
-<a name="anker-neues-projek"></a>
+<a name="anker-neues-projekt"></a>
 ## Vorbereitung für ein neues Projekt
 
-1. Ordner für das Projekt lokal anlegen (Bsp. `~/Sites/yak.project`)
+1. Ordner für das Projekt lokal anlegen (Bsp. `~/Sites/localhost.project`)
 
 1. Wenn nicht bereits geschehen, ein privates Github Repo erstellen (Readme mit anlegen lassen) via Git Client in Projektordner klonen
 
@@ -22,21 +25,21 @@
 1. `hosts` Datei öffnen und ergänzen
 
     ```
-    127.0.0.1   project.yak
-    127.0.0.1   www.project.yak
+    127.0.0.1   project.localhost
+    127.0.0.1   www.project.localhost
     ```
 
-1. `httpd-vhosts.conf` öffnen und ergänzen (`USERDIR` und ggf. `yak.project` anpassen)
+1. `httpd-vhosts.conf` öffnen und ergänzen (`USERDIR` und ggf. `localhost.project` anpassen)
  
     ```
     <VirtualHost *:80>
-        ServerName project.yak
-        ServerAlias www. project.yak
-        DocumentRoot "/Users/USERDIR/Sites/yak.project/public"
-            ErrorLog "/Users/USERDIR/Sites/Logs/yak.project-error_log"
-           CustomLog "/Users/USERDIR/Sites/Logs/yak.project-access_log" common
+        ServerName project.localhost
+        ServerAlias www. project.localhost
+        DocumentRoot "/Users/USERDIR/Sites/localhost.project/public"
+            ErrorLog "/Users/USERDIR/Sites/Logs/localhost.project-error_log"
+           CustomLog "/Users/USERDIR/Sites/Logs/localhost.project-access_log" common
     
-        <Directory "/Users/USERDIR/Sites/yak.project/public">
+        <Directory "/Users/USERDIR/Sites/localhost.project/public">
             Options Indexes FollowSymLinks
             AllowOverride All
             Order allow,deny
@@ -52,9 +55,11 @@
 
 1. Apache neu starten
 
-1. Terminal öffnen
+2. Terminal öffnen
 
-    Ausführen  `$ cd ~/Sites/yak.project`
+    Ausführen  `$ cd ~/Sites/localhost.project`
+    
+    ggf. unzip installieren `$ sudo apt-get install zip unzip` https://simplernerd.com/wsl2-zip-unzip-files/
 
 
 3. REDAXO wird mit Ausführung des nächsten Befehles automatisch installiert und eine vorhandene Instanz wird überschrieben. Wenn das nicht gewünscht ist, die Zeilen im `setup/presetup` entsprechend auskommentieren.
@@ -96,7 +101,7 @@
         - data/
     ```
 
-4. REDAXO Setup via Browser und Url `http://project.yak/redaxo` starten
+4. REDAXO Setup via Browser und Url `http://project.localhost/redaxo` starten
 
 ### weitere Einstellungen und Vorraussetzungen
 
@@ -107,12 +112,12 @@
 
 #### Deployment
 
-_alle Befehle gehen direkt vom Projektordner aus._  `~/Sites/yak.project`
+_alle Befehle gehen direkt vom Projektordner aus._  `~/Sites/localhost.project`
 
 - Datenbankdump der lokalen Instanz erstellen und auf Live via Adminer oder Datenbanktool einspielen
 - `deploy.php` in der lokalen Instanz für Server anpassen
 - Ausführen `$ bin/console ydeploy:diff`
-- lokalen Stand auf Github pullen
+- lokalen Stand auf Github pushen
 - Ausführen `$ dep deploy` (hier kommt es absichtlich noch zu einem Fehler, aber die Grundstruktur ist schon mal auf dem Server)
 
 **auf dem Live Server via FTP Client**
@@ -256,12 +261,12 @@ if (\rex::isBackend() && \rex_addon::get('ydeploy')->isAvailable()) {
 Beim Befehl `$ bin/console `ydeploy`:diff` werden jetzt die obigen Tabellen mit berücksichtigt.
 
 
-<a name="anker-bestehendes-projek"></a>
+<a name="anker-bestehendes-projekt"></a>
 ## Vorbereitung für ein bestehendes Projekt
 
 1. Via E-Mail wurde eine Einladung von Github für das Repo versendet. Dort den Link anklicken und man ist für das Repo freigeschalten. 
 
-1. Ordner für das Projekt lokal anlegen (Bsp. `~/Sites/yak.project`)
+1. Ordner für das Projekt lokal anlegen (Bsp. `~/Sites/localhost.project`)
 
 1. Github Repo via Git Client in Projektordner klonen
 
@@ -270,24 +275,24 @@ Beim Befehl `$ bin/console `ydeploy`:diff` werden jetzt die obigen Tabellen mit 
 1. Datenbankdump von der Production/Stage/Live Umgebung holen und lokal einspielen
 > Falls der Dump via Backup-AddOn geholt wird, dann die rex_user Tabelle nicht vergessen
 
-6. `hosts` Datei öffnen und ergänzen
+1. `hosts` Datei öffnen und ergänzen
 
     ```
-    127.0.0.1   project.yak
-    127.0.0.1   www.project.yak
+    127.0.0.1   project.localhost
+    127.0.0.1   www.project.localhost
     ```
 
-1. `httpd-vhosts.conf` öffnen und ergänzen (`USERDIR` und ggf. `yak.project` anpassen)
+1. `httpd-vhosts.conf` öffnen und ergänzen (`USERDIR` und ggf. `localhost.project` anpassen)
  
     ```
     <VirtualHost *:80>
-        ServerName project.yak
-        ServerAlias www. project.yak
-        DocumentRoot "/Users/USERDIR/Sites/yak.project/public"
-            ErrorLog "/Users/USERDIR/Sites/Logs/yak.project-error_log"
-           CustomLog "/Users/USERDIR/Sites/Logs/yak.project-access_log" common
+        ServerName project.localhost
+        ServerAlias www. project.localhost
+        DocumentRoot "/Users/USERDIR/Sites/localhost.project/public"
+            ErrorLog "/Users/USERDIR/Sites/Logs/localhost.project-error_log"
+           CustomLog "/Users/USERDIR/Sites/Logs/localhost.project-access_log" common
     
-        <Directory "/Users/USERDIR/Sites/yak.project/public">
+        <Directory "/Users/USERDIR/Sites/localhost.project/public">
             Options Indexes FollowSymLinks
             AllowOverride All
             Order allow,deny
@@ -298,10 +303,10 @@ Beim Befehl `$ bin/console `ydeploy`:diff` werden jetzt die obigen Tabellen mit 
     </VirtualHost>
     ```
     
-1. `/.env` Datei öffnen und anpassen
+1. `/.env.local` Datei öffnen und anpassen
     
     ```
-    APP_HOST=project.yak
+    APP_HOST=project.localhost
     ```
 
 
@@ -325,6 +330,7 @@ Beim Befehl `$ bin/console `ydeploy`:diff` werden jetzt die obigen Tabellen mit 
 <a name="anker-bekannte-probleme"></a>
 ## Bekannte Probleme
 
+<a name="anker-bekannte-probleme--deployen-domainfactory-account"></a>
 ### Deployen in einen DomainFactory Account
 
 **Fehlermeldung in der Konsole**
@@ -338,7 +344,7 @@ Host name: prod
 
 **Ursache**
 
-Bei DomainFactory wird in der KOnsole default PHP 4 genutzt
+Bei DomainFactory wird in der Konsole default PHP 4 genutzt
 
 **Lösung**
 
@@ -361,5 +367,31 @@ Symlink auf PHP 71 setzen
 1. prüfen mit: `php -v`
 
 
+Es kann vorkommen, dass die .bashrc nicht beim login aufgerufen wird. Bei Plesk kann man es z.B. lösen, indem man eine `~/.profile` ergänzt und dort die `.bashrc` aufruft. Wenn die `.profile` bereits existiert, den folgenden Aufruf am Ende ergänzen `source ~/.bashrc`
 
+oder im Deployer den bin/php Pfad direkt setzen `->set('bin/php', '/opt/plesk/php/7.3/bin/php')`
+
+<a name="anker-bekannte-probleme--deployen-all-inkl"></a>
+### Deployen bei All-Inkl
+PHP-CLI und `writeable_mode` müssen in der **deploy.php** gesetzt werden:
+```
+host(NAME)
+->set('writable_mode', 'chmod')
+->set('bin/php', '/usr/bin/php74')
+// ...
+;
+```
+
+<a name="anker-bekannte-probleme--sql-dump"></a>
+### Import von sql-Dump mit date (0000-00-00) und datetime (0000-00-00 00:00:00) Werten
+
+1. `SHOW variables LIKE 'sql_mode';`
+    Angezeigten Wert speichern
+    Beispiel
+    > ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+
+1. `SET sql_mode = '';`
+1. Dump importieren
+1. `SET sql_mode = 'VALUE';`
+    VALUE = zuvor gespeicherter Wert
 
