@@ -65,6 +65,7 @@
 3. REDAXO wird mit Ausführung des nächsten Befehles automatisch installiert und eine vorhandene Instanz wird überschrieben. Wenn das nicht gewünscht ist, die Zeilen im `setup/presetup` entsprechend auskommentieren.
 
     Ausführen `$ setup/presetup`
+    oder      `$ php setup/presetup.php` (funktioniert auch unter Windows)
 
 
     **Nach dem presetup sollte die neue REDAXO Struktur wie folgt aussehen**
