@@ -1,0 +1,28 @@
+@use '../abstracts/index' as *;
+
+:root {
+    @each $color, $shade in $colors {
+        @each $prop, $value in $shade {
+            --color-#{$color}-#{$prop}: #{$value};
+        }
+    }
+
+    @each $screen-size, $property in $type-scale {
+        @if $screen-size == base {
+            @each $prop, $value in $property {
+                --fs-#{$prop}: #{$value};
+            }
+        } @else {
+            @include mq($screen-size) {
+                @each $prop, $value in $property {
+                    --fs-#{$prop}: #{$value};
+                }
+            }
+        }
+    }
+
+    --ff-normal: sans-serif;
+    --ff-display: serif;
+    --color-primary: var(--color-primary-400);
+    --color-secondary: var(--color-secondary-900);
+}

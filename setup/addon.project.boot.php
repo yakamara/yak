@@ -4,8 +4,8 @@
  * @var rex_addon $this
  */
 
-if (\rex_addon::get('developer')->isAvailable()) {
-    \rex_developer_manager::setBasePath(\rex_path::src());
+if (rex_addon::get('developer')->isAvailable()) {
+    rex_developer_manager::setBasePath(rex_path::src());
 }
 
 // register a custom yrewrite scheme

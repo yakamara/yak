@@ -1,0 +1,19 @@
+//@layer layout {
+    .grid {
+        --grid-min: 15ch;
+        --grid-gap: 3vw;
+
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--grid-min)), 1fr));
+        gap: var(--grid-gap);
+    }
+
+    /**
+        Note: There is a bug as of Safari 16.4 where using containment
+        on a grid using auto-fit collapses widths to zero, so proceed
+        with caution if you use this strategy before the bug is resolved.
+     */
+    //:is(.grid, .flex) > * {
+    //    container: var(--grid-item-container, grid-item) / inline-size;
+    //}
+//}

@@ -1,0 +1,46 @@
+//@layer components {
+    /*
+    <main>
+        ...
+        <div class="back-to-top-wrapper">
+            <a href="#id-top" class="back-to-top-link button" aria-label="Zum Anfang scrollen">
+                <?= Asset::getSvgIcon('up') ?>
+            </a>
+        </div>
+     </main>
+     */
+    .back-to-top-wrapper {
+        position: absolute;
+        top: 100vh;
+        right: clamp(1rem, 5%, 3rem);
+        bottom: -1em;
+        width: 3em;
+        pointer-events: none;
+    }
+
+    .back-to-top-link {
+        position: sticky;
+        z-index: 1;
+        pointer-events: all;
+        top: calc(100vh - 5rem);
+
+        // basic styling
+        display: inline-block;
+        padding: 0.25rem;
+        background-color: var(--color-neutral-100);
+        border-radius: 3px;
+        color: var(--color-primary-400);
+        font-size: 2rem;
+        text-decoration: none;
+        transition: transform 80ms ease-in;
+
+        &:hover,
+        &:focus {
+            transform: scale(1.1);
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+//}

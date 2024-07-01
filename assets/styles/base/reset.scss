@@ -1,118 +1,140 @@
-@charset "utf-8";
+//@layer reset {
+    /* ------------------- */
+    /* Reset               */
+    /* ------------------- */
+    /* Box sizing rules */
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
 
-// -----------------------------------------------------------------------------
-// Yak - This file contains very basic styles.
-// -----------------------------------------------------------------------------
-* {
-    box-sizing: border-box;
-}
+    blockquote,
+    body,
+    dd, dl,
+    figure,
+    h1, h2, h3, h4,
+    p {
+        margin: 0;
+    }
 
-html * {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-}
-
-blockquote, figure,
-h1, h2, h3, h4, h5, h6,
-hr, li, p, pre {
-    margin: 0;
-    padding-right: 0;
-    padding-left: 0;
-}
-
-ol, ul {
-    margin: 0;
-    padding-right: 0;
-}
-
-a, div, li, section, span, svg {
-    margin-top: 0;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    display: block;
-    padding: 0;
-    font-weight: 400;
-}
-
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-a {
-    text-decoration: none;
-    transition: $transition-base;
-}
-a:focus {
-    outline: none;
-}
-
-figure {
-    padding: 0;
-}
-
-figure > img {
-    display: block;
-    height: auto;
-}
-
-img {
-    vertical-align: middle;
-    border-style: none;
-}
-
-button, input, textarea {
-    border: 0;
-    border-radius: 0;
-    outline: none;
-    appearance: none;
-}
-
-button:active, button:focus, button:hover,
-input:active, input:focus, input:hover,
-textarea:active, textarea:focus, textarea:hover {
-    outline: none;
-}
-
-embed, iframe, img, object, video {
-    max-width: 100%;
-}
-
-table {
-    width: 100%;
-    table-layout: fixed;
-}
+    :where(ul, ol):where([role=list]) {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
 
 
-//
-//ul li {
-//    margin: 0;
-//    padding: 0;
-//}
-//
-//figure, ol {
-//    margin: 0;
-//    padding: 0;
-//}
-//
-//p {
-//    padding: 0;
-//}
-//
-//fieldset {
-//    border: none;
-//    margin: 0;
-//    padding: 0;
-//}
-//
-//button {
-//    //-webkit-font-smoothing: none;
-//    cursor: pointer;
+    /* Improves punctuation in supported browsers */
+    /* Prevent font size inflation */
+    html {
+        scroll-behavior: smooth;
+        hanging-punctuation: first last;
+        -moz-text-size-adjust: none;
+        -webkit-text-size-adjust: none;
+        text-size-adjust: none;
+    }
+
+    /* Set core body defaults */
+    body {
+        min-height: 100vh;
+        color: var(--color-neutral-900, hsl(0, 0%, 0%));
+        font-family: system-ui, sans-serif;
+        font-size: var(--fs-400, 1rem);
+        line-height: 1.6;
+        text-rendering: optimizeSpeed;
+    }
+
+    /* Balance text wrapping on headings */
+    h1, h2, h3,
+    h4, h5, h6 {
+        text-wrap: balance;
+    }
+
+    h1, h2, h3,
+    h4, h5, h6,
+    p {
+        font-weight: 400;
+    }
+
+    /* Improve readability with max-width on paragraphs and lists */
+    /* Prevent orphans in supported browsers */
+    p,
+    li {
+        max-width: var(--p-max-width, 65ch);
+        text-wrap: pretty;
+    }
+
+    /* A elements that don't have a class get default styles */
+    a:not([class]) {
+        color: currentColor;
+        text-decoration-skip-ink: auto;
+        text-decoration-thickness: max(.08em, 1px);
+        text-underline-offset: .15em;
+    }
+
+    /* Make images easier to work with */
+    img,
+    picture,
+    svg,
+    video {
+        display: block;
+        max-width: 100%;
+    }
+
+    img[width] {
+        height: auto;
+    }
+
+    svg {
+        fill: currentColor;
+        pointer-events: none;
+    }
+
+    /* Force styling of type through styling, rather than elements */
+    button,
+    input,
+    select,
+    textarea {
+        font: inherit;
+    }
+
+    /* Make sure textareas without a rows attribute are not tiny */
+    textarea:not([rows]) {
+        min-height: 10em;
+    }
+
+    /* Scroll margin allowance above anchor links */
+    :target {
+        scroll-padding-block-start: var(--scroll-padding-start, 5ex);
+    }
+
+    /* Scroll margin allowance below focused elements
+      to ensure they are clearly in view */
+    :focus {
+        scroll-padding-block-end: var(--scroll-padding-end, 8vh);
+    }
+
+    :focus-visible {
+        --outline-size: max(2px, 0.15em);
+
+        outline: var(--outline-width, var(--outline-size)) var(--outline-style, solid) var(--outline-color, currentColor);
+        outline-offset: var(--outline-offset, var(--outline-size));
+    }
+
+    /* Remove animations for people who've turned them off */
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+
+        *,
+        *::after,
+        *::before {
+            animation-duration: .01ms !important;
+            animation-iteration-count: 1 !important;
+            scroll-behavior: auto !important;
+            transition-duration: .01ms !important;
+        }
+    }
 //}

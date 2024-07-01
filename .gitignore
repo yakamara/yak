@@ -8,6 +8,8 @@
 /public/assets/styles
 /public/assets/svgs
 
+/public/build/
+
 /public/media/*
 !/public/media/.redaxo
 
@@ -16,7 +18,6 @@
 
 /var/data/addons/*/*
 !/var/data/addons/mblock/*
-!/var/data/addons/mform/*
 !/var/data/addons/ydeploy/*
 /var/data/core/*
 

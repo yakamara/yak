@@ -1,62 +1,109 @@
-@charset "utf-8";
-
-// Init typi and build html selector
-@include typi-init();
-
-html {
-    @include ff('primary');
-    @include fw('primary', 400);
+* {
+    font-variation-settings:
+        'wght' var(--font-weight, 375),
+        'wdth' var(--font-width, 80);
+    -webkit-font-smoothing: antialiased;
 }
 
 body {
-    @include typi('init');
+    font-size: var(--fs-400);
+    font-family: var(--ff-normal);
+    color: var(--color-neutral-100);
+    letter-spacing: -.5px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    @include ff('primary');
-    @include fw('primary', 300);
+
+h1, h2, h3, h4 {
+    --font-weight: 700;
+    --font-width: 80;
+    font-weight: normal;
+    font-stretch: 100%;
+    line-height: 1.1;
 }
 
-body:active {
-    //@include baseline-grid();
+h1 {
+    --font-weight: 900;
+    font-family: var(--ff-display);
+    //color: var(--color, var(--color-primary-400));
 }
 
-b, strong {
-    @include fw('primary', 700);
+h2 {
+    font-family: var(--ff-display);
+}
+
+h3 {
+    --font-weight: 400;
+}
+
+p.lead {
+    font-family: var(--ff-display);
+    text-wrap: balance;
+}
+
+
+// This is setting the font-sizes
+// based on the ones in the abstract
+// folder, go there to make updates
+
+h1,
+.h1 {
+    font-size: var(--fs-900);
+}
+
+h2,
+.h2 {
+    --flow-spacer: 1.5em;
+    font-size: var(--fs-800);
+}
+h3,
+.h3 {
+    --flow-spacer: 1.5em;
+    font-size: var(--fs-700);
+}
+
+h4,
+.h4 {
+    font-size: var(--fs-600);
+}
+
+h5,
+.h5 {
+    font-size: var(--fs-500);
+}
+
+p.lead {
+    font-size: var(--fs-600);
+}
+
+small,
+.text-small {
+    font-size: var(--fs-300);
+}
+
+strong {
+    --font-weight: 500;
+    font-weight: normal;
+}
+
+a:not([class]) {
+    &:hover,
+    &:focus {
+        color: var(--color-neutral-900);
+        text-decoration: none;
+
+        .bg-secondary-900 &,
+        .bg-neutral-900 & {
+            color: var(--color-primary-400);
+        }
+    }
+}
+
+p:not([class]),
+ul:not([class]),
+li:not([class]) {
+    max-width: 80ch;
 }
 
 address {
     font-style: normal;
-}
-
-blockquote {
-    @include typi('init');
-    @include ff('primary');
-    font-style: italic;
-}
-
-/* Init create-typo-classes */
-@include yak-create-heading-styles();
-
-.kicker {
-    color: yak-color('default', 'dark');
-    @include typi(init);
-    @include fw('primary', 500);
-}
-
-.intro {
-    @include typi('l4');
-    @include fw('primary', 500);
-}
-
-.text-uppercase {
-    text-transform: uppercase;
-}
-
-
-.align-center {
-    text-align: center !important;
-}
-.align-right {
-    text-align: right !important;
 }

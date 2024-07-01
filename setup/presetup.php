@@ -1,18 +1,18 @@
 <?php
-function _mkdir($dir)
+function _mkdir($dir): void
 {
     if (!file_exists($dir)) {
         mkdir($dir);
     }
 }
 
-function _rmdir($dir)
+function _rmdir($dir): void
 {
     if (!file_exists($dir)) {
         return;
     }
 
-    $iterator = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
+    $iterator = new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS);
     $files = new RecursiveIteratorIterator($iterator, RecursiveIteratorIterator::CHILD_FIRST);
     foreach($files as $file) {
         if ($file->isDir()){
@@ -24,7 +24,7 @@ function _rmdir($dir)
     rmdir($dir);
 }
 
-function _mv($source, $target)
+function _mv($source, $target): void
 {
     _rmdir($target);
     rename($source, $target);
@@ -41,8 +41,8 @@ $ini = parse_ini_file(__DIR__ . DIRECTORY_SEPARATOR . 'setup.ini', true);
 echo "
 Reading config file
 - - - - - - - - - - - -
-    REDAXO install version: ${ini['REDAXO_VERSION']}
-    REDAXO shasum: ${ini['REDAXO_SHA']}
+    REDAXO install version: {$ini['REDAXO_VERSION']}
+    REDAXO shasum: {$ini['REDAXO_SHA']}
 ";
 
 # make tmp folders
@@ -55,8 +55,8 @@ Load REDAXO zip file
 - - - - - - - - - - - -
 ";
 
-$file = "./tmp/redaxo/redaxo_${ini['REDAXO_VERSION']}.zip";
-file_put_contents($file, file_get_contents("https://github.com/redaxo/redaxo/releases/download/${ini['REDAXO_VERSION']}/redaxo_${ini['REDAXO_VERSION']}.zip"));
+$file = "./tmp/redaxo/redaxo_{$ini['REDAXO_VERSION']}.zip";
+file_put_contents($file, file_get_contents("https://github.com/redaxo/redaxo/releases/download/{$ini['REDAXO_VERSION']}/redaxo_{$ini['REDAXO_VERSION']}.zip"));
 
 if (sha1_file($file) !== $ini['REDAXO_SHA']) {
     echo 'ERROR: SHA-Hash is incorrect.';
@@ -68,7 +68,7 @@ $res = $zip->open($file);
 if ($res === true) {
     $zip->extractTo('./public');
     $zip->close();
-    echo "Redaxo ${ini['REDAXO_VERSION']} was sussessful loaded and unzipped into the public folder.
+    echo "Redaxo {$ini['REDAXO_VERSION']} was successful loaded and unzipped into the public folder.
 ";
 } else {
     echo 'ERROR: Redaxo could not be unzipped.';
@@ -95,10 +95,9 @@ unlink('./public/README.de.md');
 
 copy('./setup/addon.project.boot.php', './src/addons/project/boot.php');
 copy('./setup/console', './bin/console');
-copy('./setup/deploy.php', './deploy.php');
 copy('./setup/index.backend.php', './public/redaxo/index.php');
 copy('./setup/index.frontend.php', './public/index.php');
-copy('./setup/path_provider.php', './src/path_provider.php');
+copy('./setup/AppPathProvider.php', './src/AppPathProvider.php');
 
 echo "File structure was successful created.
 ";
@@ -129,19 +128,19 @@ foreach ($ini as $url => $addons)
         }
 
         $addonData = json_decode(file_get_contents($url . $addon . '/releases/latest', false, $context), true);
-        file_put_contents($file = "./tmp/${addon}.zip", file_get_contents($addonData['zipball_url'], false, $context));
+        file_put_contents($file = "./tmp/$addon.zip", file_get_contents($addonData['zipball_url'], false, $context));
 
         $zip = new ZipArchive;
         $res = $zip->open($file);
         if ($res === true) {
             $zip->extractTo('./tmp');
             $zip->close();
-            _mv(glob("./tmp/*-${addon}-*")[0], "./src/addons/${addonName}");
-            echo "${addonName} was successful loaded and unzipped into the addon folder.
-";
+            _mv(glob("./tmp/*-$addon-*")[0], "./src/addons/$addonName");
+            echo "$addonName was successful loaded and unzipped into the addon folder.
+            ";
         } else {
-            echo "ERROR: ${addon} could not be unzipped.
-";
+            echo "ERROR: $addon could not be unzipped.
+            ";
         }
     }
 }

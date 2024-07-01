@@ -1,0 +1,18 @@
+//@layer layout {
+    .flex {
+        --flex-min: 10ch;
+        --flex-gap: 3vmax;
+
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--flex-gap);
+
+        > * {
+            flex: 1 1 var(--flex-min);
+        }
+
+        &-reverse {
+            flex-direction: row-reverse;
+        }
+    }
+//}

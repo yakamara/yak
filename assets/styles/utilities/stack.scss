@@ -1,0 +1,10 @@
+//@layer layout {
+    .stack {
+        display: grid;
+        grid-template-areas: "stack";
+
+        > * {
+            grid-area: stack;
+        }
+    }
+//}

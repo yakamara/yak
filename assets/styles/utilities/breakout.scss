@@ -1,0 +1,25 @@
+//@layer layout {
+    .breakout {
+        --breakout-max-content-width: calc(var(--container-shrink-max-width) - (2 * var(--container-padding-x)));
+        --breakout-difference: 0.6;
+        --breakout-grid-width: calc(var(--breakout-max-content-width) + (var(--breakout-max-content-width) * var(--breakout-difference)));
+
+        display: grid;
+        grid-template-columns:
+            [grid-start] 1fr
+            [content-start] minmax(min(100%, var(--breakout-max-content-width)), 1fr)
+            [content-end] 1fr
+            [grid-end];
+        width: min(100% - 2rem, var(--breakout-grid-width));
+        row-gap: 1rem;
+        margin: 5vb auto;
+
+        > *:not(.breakout-element) {
+            grid-column: content;
+        }
+
+        > .breakout-element {
+            grid-column: grid;
+        }
+    }
+//}

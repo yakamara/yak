@@ -1,0 +1,18 @@
+//@layer layout {
+
+    // The holy grail: vertical and horizontal centering, aka centering along both the x-axis and the y-axis.
+    .centering {
+        display: grid;
+        place-content: center;
+    }
+
+    .centering-x {
+        display: grid;
+        justify-content: center;
+    }
+
+    .centering-y {
+        display: grid;
+        align-content: center;
+    }
+//}

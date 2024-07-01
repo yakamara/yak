@@ -1,0 +1,100 @@
+/**
+    Styles will support the following variations of a button:
+
+    - a button element
+        ```
+        <button class="button" type="button">Button</button>
+        ```
+
+    - a link element
+        ```
+        <a href="" class="button" type="button">Button</a>
+        ```
+
+    - text plus an icon
+        ```
+        <a class="button" href="">
+            Instagram
+            <?= Asset::getSvgIcon('instagram') ?>
+        </a>
+        ```
+
+    - icon plus text
+        ```
+        <a class="button" href="">
+            <?= Asset::getSvgIcon('instagram') ?>
+            Instagram
+        </a>
+        ```
+
+    - icon-only
+        ```
+        <a class="button" href="">
+            <?= Asset::getSvgIcon('instagram') ?>
+            <span class="sr-only">Instagram</span>
+        </a>
+        ```
+*/
+
+//@layer components {
+    .button {
+        // Display
+        display: inline-flex;
+        align-self: start;
+        justify-self: start;
+
+        // Reset for buttons
+        padding: 0.55em 0.75em 0.5em;
+
+        // Effects
+        transition: none 180ms ease-in-out;
+        transition-property: background-color, color, border-color;
+        border: 2px solid var(--button-border-color, var(--color-neutral-100));
+
+        // Visual
+        background-color: var(--button-bg, transparent);
+        border-radius: 0.5em;
+        color: var(--button-color, var(--color-neutral-100));
+        font-family: inherit;
+        font-size: var(--fs-400, 1rem);
+        font-weight: 400;
+        letter-spacing: 0.04em;
+        line-height: calc(2px + 2ex + 2px);
+
+        // Reset for links
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .button:where(:has(.icon)) {
+        gap: 0.5em;
+        align-items: center;
+    }
+
+    .button:where(:has(.sr-only)) {
+        padding: 0.5em;
+        border-radius: 50%;
+    }
+
+    .button:where(:not(:has(.icon))) {
+        justify-content: center;
+        text-align: center;
+        min-inline-size: 20ch;
+    }
+
+    .button:where(:not(:has(.sr-only))) {
+        padding: var(--button-padding, 0.75em 1em);
+        //border-radius: 0;
+    }
+
+    .button:hover {
+        --button-bg: var(--color-neutral-100);
+        --button-border-color: var(--button-bg);
+        --button-color: var(--color-primary);
+    }
+
+    .button:focus-visible {
+        --outline-style: dashed;
+        --outline-offset: -0.35em;
+    }
+//}

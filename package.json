@@ -1,31 +1,31 @@
 {
     "private": true,
-    "name": "yakname",
+    "name": "project",
     "dependencies": {
-        "autosize": "^5.0.1",
-        "bourbon": "^6.0.0",
-        "bourbon-neat": "^4.0.0",
-        "imagesloaded": "^4.1.4",
-        "inputmask": "^3.3.8",
-        "jquery": "^3.6.0",
-        "masonry-plus": "^1.1.0",
-        "modularscale-sass": "3.0.10",
-        "moment": "^2.29.4",
-        "normalize.css": "^8.0.1",
-        "owl.carousel": "github:owlcarousel2/OwlCarousel2",
-        "sass-mq": "^5.0.1",
-        "scrollme": "github:tobaco/scrollme",
-        "select2": "^4.0.13",
-        "typi": "^3.2.0",
-        "waypoints": "^4.0.1"
     },
     "devDependencies": {
-        "@yakamara/gulp-tasks": "^1.17.0",
-        "dotenv": "^10.0.0",
-        "gulp": "^4.0.2"
+        "@babel/core": "^7.24.7",
+        "@babel/preset-env": "^7.24.7",
+        "@symfony/webpack-encore": "^4.6.1",
+        "autoprefixer": "^10.4.19",
+        "core-js": "^3.37.1",
+        "file-loader": "^6.2.0",
+        "postcss": "^8.4.38",
+        "postcss-loader": "^8.1.1",
+        "regenerator-runtime": "^0.14.1",
+        "sass": "^1.77.6",
+        "sass-loader": "^14.2.1",
+        "svg-sprite-loader": "6.0.11",
+        "svgo-loader": "^4.0.0",
+        "webpack": "^5.92.0",
+        "webpack-cli": "^5.1.4",
+        "webpack-notifier": "^1.15.0"
     },
-    "engines": {
-        "node": ">=10"
+    "scripts": {
+        "dev-server": "encore dev-server",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production --progress"
     },
     "browserslist": [
         "defaults"
