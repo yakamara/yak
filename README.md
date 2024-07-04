@@ -2,13 +2,22 @@
 
 ## Inhaltsverzeichnis
 
-- Erste Schritte
-  - Voraussetzungen
-  - Installation
-- Deployment
-- Beitragen
-- Versionierung
-- Lizenz
+- [Erste Schritte](#erste-schritte)
+  - [Voraussetzungen](#voraussetzungen)
+  - [Installation](#installation)
+- [Nach dem Setup](#nach-dem-setup)
+  - [Einstellungen Developer AddOn](#einstellungen-developer-addon)
+    - [Lokal](#lokal)
+    - [Staging/Prod](#stagingprod)
+  - [zusätzliche Datenbank-Tabellen synchronisieren](#zusätzliche-datenbank-tabellen-synchronisieren)
+  - [Erstes deployen auf Staging/Prod](#erstes-deployen-auf-stagingprod)
+  - [Allgemeines Arbeiten](#allgemeines-arbeiten)
+  - [Bekannte Probleme](#bekannte-probleme)
+      - [Deployen in einen DomainFactory Account](#deployen-in-einen-domainfactory-account)
+      - [Deployen bei All-Inkl](#deployen-bei-all-inkl)
+      - [Import von sql-Dump mit date (0000-00-00) und datetime (0000-00-00 00:00:00) Werten](#import-von-sql-dump-mit-date-0000-00-00-und-datetime-0000-00-00-000000-werten)
+- [Versionierung](#versionierung)
+- [Lizenz](#lizenz)
 
 ## Erste Schritte
 
@@ -120,7 +129,7 @@ Ansonsten wird
 
 ### Einstellungen Developer AddOn
 
-**Lokal**
+#### Lokal
 
 - [x] Templates synchronisieren
 - [x] Module synchronisieren
@@ -135,7 +144,7 @@ Ansonsten wird
 - [x] Item-Ordner löschen nach dem Löschen eines Items über das Backend
 
 
-**Staging/Prod**
+#### Staging/Prod
 
 - [x] Templates synchronisieren
 - [x] Module synchronisieren
@@ -185,7 +194,9 @@ if (\rex::isBackend() && \rex_addon::get('ydeploy')->isAvailable()) {
 }
 ```
 
-## @todo prüfen: Erstes deployen auf Staging/Prod
+## Erstes deployen auf Staging/Prod
+
+> @todo: Abschnitt prüfen
 
 **alle Befehle gehen direkt vom Projektordner aus.**  
 `~/Sites/localhost.project-name`
@@ -281,6 +292,7 @@ host(NAME)
 
 1. `SET sql_mode = 'VALUE';`
    VALUE = zuvor gespeicherter Wert
+
 
 ## Versionierung
 
