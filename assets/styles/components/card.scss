@@ -1,5 +1,14 @@
 @use '../abstracts/index' as *;
 
+.card-list {
+    --grid-min: 15ch;
+    --flow-spacer: 3vw;
+
+    @include mq(md) {
+        --grid-min: 22ch;
+    }
+}
+
 .card {
     --img-ratio: 3/2;
 
@@ -15,14 +24,5 @@
 
     > :not(figure, picture, img) {
         text-wrap: pretty;
-    }
-}
-
-.card-list {
-    --grid-min: 15ch;
-    --flow-spacer: 3vw;
-
-    @include mq(md) {
-        --grid-min: 22ch;
     }
 }
