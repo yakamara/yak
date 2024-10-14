@@ -18,43 +18,56 @@
     //}
 
     .grid-breakout {
-        --breakout-size: minmax(0, ((var(--breakout-max-width) - var(--content-max-width)) / var(--breakout-factor, 1)));
-        --feature-size: minmax(0, ((var(--feature-max-width) - var(--content-max-width)) / (var(--breakout-factor, 1) * 2 )));
-        --feature-side-size: minmax(var(--padding-inline), ((var(--feature-max-width) - var(--content-max-width)) / (var(--breakout-factor, 1) * 2 )));
-        --full-width-size: minmax(var(--padding-inline), 1fr);
-        --content-size: min(100% - (var(--padding-inline) * 2), var(--content-max-width));
+        --breakout-size: calc((var(--breakout-max-width) - var(--content-max-width)) / var(--breakout-factor, 1));
+        --feature-size: calc((var(--feature-max-width) - var(--content-max-width)) / (var(--breakout-factor, 1) * 2 ));
+        --feature-side-size: calc((var(--feature-max-width) - var(--content-max-width)) / (var(--breakout-factor, 1) * 2 ));
 
         display: grid;
         grid-template-columns:
-            [full-width-start] minmax(var(--padding-inline), 1fr)
-            [feature-start] minmax(0, var(--feature-size))
-            [breakout-start] minmax(0, var(--breakout-size))
-            [content-start] min(100% - (var(--padding-inline) * 2), var(--content-max-width))
-            [content-end]
-            minmax(0, var(--breakout-size)) [breakout-end]
-            minmax(0, var(--feature-size)) [feature-end]
-            minmax(var(--padding-inline), 1fr) [full-width-end];
+                [full-width-start]
+                minmax(var(--padding-inline), 1fr)
+                    [feature-start]
+                    minmax(0, var(--feature-size))
+                        [breakout-start]
+                        minmax(0, var(--breakout-size))
+                            [content-start] min(100% - (var(--padding-inline) * 2), var(--content-max-width)) [content-end]
+                        minmax(0, var(--breakout-size))
+                        [breakout-end]
+                    minmax(0, var(--feature-size))
+                    [feature-end]
+                minmax(var(--padding-inline), 1fr)
+                [full-width-end];
     }
 
     .grid-breakout.feature-left {
         display: grid;
         grid-template-columns:
-            [full-width-start] var(--full-width-size)
-            [feature-start] var(--feature-size)
-            [breakout-start] var(--breakout-size)
-            [content-start] var(--content-size) [content-end]
-            var(--breakout-size) [breakout-end]
-            var(--feature-side-size) [feature-end full-width-end];
+                [full-width-start]
+                minmax(var(--padding-inline), 1fr)
+                    [feature-start]
+                    minmax(0, var(--feature-size))
+                        [breakout-start]
+                        minmax(0, var(--breakout-size))
+                            [content-start] min(100% - (var(--padding-inline) * 2), var(--content-max-width)) [content-end]
+                        minmax(0, var(--breakout-size))
+                        [breakout-end]
+                minmax(var(--padding-inline), var(--feature-side-size))
+                [feature-end full-width-end];
     }
     .grid-breakout.feature-right {
         display: grid;
         grid-template-columns:
-            [full-width-start feature-start] var(--feature-side-size)
-            [breakout-start] var(--breakout-size)
-            [content-start] var(--content-size) [content-end]
-            var(--breakout-size) [breakout-end]
-            var(--feature-size) [feature-end]
-            var(--full-width-size) [full-width-end];
+                [full-width-start feature-start]
+                minmax(var(--padding-inline), var(--feature-side-size))
+                        [breakout-start]
+                        minmax(0, var(--breakout-size))
+                            [content-start] min(100% - (var(--padding-inline) * 2), var(--content-max-width)) [content-end]
+                        minmax(0, var(--breakout-size))
+                        [breakout-end]
+                    minmax(0, var(--feature-size))
+                    [feature-end]
+                minmax(var(--padding-inline), 1fr)
+                [full-width-end];
     }
 
     .grid-breakout > * {
