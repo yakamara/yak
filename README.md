@@ -35,6 +35,12 @@ Ansonsten wird
 
 1. Auf dem lokalen Rechner einen leeren Ordner für das Projekt anlegen (Bsp. `~/Sites/project-name`)
 1. Ein privates Github Repo erstellen (README mit anlegen lassen) und via Git Client in den Projektordner `project-name` klonen
+1. Yak als zweites Remote hinzufügen und in das Projekt holen — so lassen sich spätere yak-Updates mit `git merge yak/main` nachziehen
+
+    ```
+    $ git remote add yak https://github.com/yakamara/yak.git
+    $ git fetch yak && git merge yak/main --allow-unrelated-histories
+    ```
 
 1. `httpd-vhosts.conf` öffnen und ergänzen (`USER_DIR` und `project-name` anpassen)
 
@@ -95,7 +101,7 @@ Ansonsten wird
     - /src/
         - addons/
         - core/
-        - module/
+        - modules/
         - templates/
         - AppPathProvider.php
     - /var/
