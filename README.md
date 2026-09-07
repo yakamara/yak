@@ -39,7 +39,7 @@ Ansonsten wird
 
     ```
     $ git remote add yak https://github.com/yakamara/yak.git
-    $ git fetch yak && git merge yak/main --allow-unrelated-histories
+    $ git fetch yak && git merge --allow-unrelated-histories yak/main
     ```
 
 1. `httpd-vhosts.conf` öffnen und ergänzen (`USER_DIR` und `project-name` anpassen)
